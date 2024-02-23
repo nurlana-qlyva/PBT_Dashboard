@@ -7,6 +7,7 @@
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 -3px 31px 0 #0000000d, 0 6px 20px 0 #00000005;
+    text-align: center;
 }
 .chart h2 {
     min-height: 70px;
@@ -27,6 +28,7 @@
     box-shadow: 0 -3px 31px 0 #0000000d, 0 6px 20px 0 #00000005;
     color: #fff;
     border-radius: 4px;
+    min-height: 134px;
 }
 .statistic-card-flex .card p {
     font-size: 40px;
@@ -39,6 +41,17 @@
     font-weight: 500;
     color: #fff;
     margin: 10px 0 0;
+}
+
+:where(.css-dev-only-do-not-override-1xg9z9n).ant-spin-nested-loading >div>.ant-spin {
+    top: 26px;
+}
+:where(.css-dev-only-do-not-override-1xg9z9n).ant-spin .ant-spin-dot-item {
+    background-color: #fff;
+}
+
+.chart :where(.css-dev-only-do-not-override-1xg9z9n).ant-spin .ant-spin-dot-item {
+    background-color: #000;
 }
 
 @media (max-width: 992px) {

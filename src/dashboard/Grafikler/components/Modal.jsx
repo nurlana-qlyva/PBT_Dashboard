@@ -7,7 +7,7 @@ export const ChartModal = ({chart}) => {
     return (
         <>
             <Button type="secondary" onClick={() => setOpen(true)}>
-                Zoom
+                Büyüt
             </Button>
             <Modal
                 title="İş Emirleri/ İş Talepleri Grafiği"

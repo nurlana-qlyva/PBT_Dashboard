@@ -3,7 +3,7 @@ import { Space } from 'antd';
 
 
 
-export const SettingsList = ({ chart }) => {
+export const AyarlarListesi = ({ chart }) => {
 
 
     return (<>

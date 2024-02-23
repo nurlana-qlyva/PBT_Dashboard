@@ -42,7 +42,7 @@ const FilterGrafik = () => {
             open={open}
             onOpenChange={handleOpenChange}
         >
-            <Button>Filtirle</Button>
+            <Button>Filtrele</Button>
         </Popover>
     );
 };

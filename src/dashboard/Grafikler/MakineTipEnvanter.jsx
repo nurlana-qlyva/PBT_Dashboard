@@ -1,15 +1,11 @@
+import useFetch from '../useFetch'
 import { Bar } from '@ant-design/plots';
-import { useEffect, useState } from 'react';
 
-
-
-const EnvanterBarChart = ({data}) => {
-    const[chartdata, setData] = useState([])
-
-    useEffect(() => setData(data.MAKINE_TIP_ENVANTER), [data.MAKINE_TIP_ENVANTER])
+const MakineTipEnvanter = () => {
+    const [data] = useFetch("GetMakineTipEnvanter?ID=2")
 
     const config = {
-        data: chartdata,
+        data,
         xField: 'MAKINE_TIPI',
         yField: 'MAKINE_SAYISI',
         paddingRight: 80,
@@ -55,7 +51,8 @@ const EnvanterBarChart = ({data}) => {
             elementHighlightByColor: true,
         },
     };
+
     return <Bar {...config} />;
 }
 
-export default EnvanterBarChart
+export default MakineTipEnvanter

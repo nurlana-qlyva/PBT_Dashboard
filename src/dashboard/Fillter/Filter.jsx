@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Button, Popover, Space } from 'antd';
+import { useState } from 'react';
+import { Space } from 'antd';
+import { UserOutlined } from "@ant-design/icons";
 import FilterButton from './components/FilterButton';
 import FilterGrafik from './components/FilterGrafik';
-import { UserOutlined } from "@ant-design/icons";
-
 
 export default function Filter() {
   const [mobileView, setMobileView] = useState(window.innerWidth < 768);
@@ -11,14 +10,6 @@ export default function Filter() {
   window.addEventListener("resize", () => {
     setMobileView(window.innerWidth < 768);
   });
-  // const [open, setOpen] = useState(false);
-  // const hide = () => {
-  //     setOpen(false);
-  // };
-  // const handleOpenChange = (newOpen) => {
-  //     setOpen(newOpen);
-  // };
-
 
   const items = [
     {
@@ -77,7 +68,7 @@ export default function Filter() {
     },
   ];
 
-  const menuProps = {
+  const filterProps = {
     items,
     // onClick: handleMenuClick,
   };
@@ -85,10 +76,10 @@ export default function Filter() {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: mobileView ? "0" : '0px 24px' }}>
       <Space wrap>
-        <FilterButton title={'Title'} buttonTitle={'All locations'} menuProps={menuProps} />
-        <FilterButton title={'Title'} buttonTitle={'Time'} menuProps={menuProps} />
-        <FilterButton title={'Title'} buttonTitle={'Active'} menuProps={menuProps} />
-        <FilterButton title={'Title'} buttonTitle={'All locations'} menuProps={menuProps} />
+        <FilterButton title={'Title'} buttonTitle={'Tüm Lokasyonlar'} filterProps={filterProps} />
+        <FilterButton title={'Title'} buttonTitle={'Time'} filterProps={filterProps} />
+        <FilterButton title={'Title'} buttonTitle={'Active'} filterProps={filterProps} />
+        <FilterButton title={'Title'} buttonTitle={'All locations'} filterProps={filterProps} />
       </Space>
 
       <Space>

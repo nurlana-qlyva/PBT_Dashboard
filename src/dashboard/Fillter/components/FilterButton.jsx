@@ -3,7 +3,7 @@ import { Button, Popover, Space, Dropdown } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 
-export default function FilterButton({ title, menuProps, buttonTitle }) {
+export default function FilterButton({ filterProps, buttonTitle }) {
   // const [open, setOpen] = useState(false);
   // const hide = () => {
   //     setOpen(false);
@@ -16,7 +16,7 @@ export default function FilterButton({ title, menuProps, buttonTitle }) {
 
   return (
 
-    <Dropdown menu={menuProps} trigger="click">
+    <Dropdown menu={filterProps} trigger="click">
       <Button>
         <Space>
           {buttonTitle}

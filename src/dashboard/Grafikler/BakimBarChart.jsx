@@ -1,14 +1,13 @@
+import useFetch from '../useFetch'
 import { Bar } from '@ant-design/plots';
-import { useEffect, useState } from 'react';
 
 
-const BakimBarChart = ({ data }) => {
-    const [chartdata, setData] = useState([])
 
-    useEffect(() => setData(data.MAKINE_TIP_ENVANTER), [data.MAKINE_TIP_ENVANTER])
+const BakimBarChart = () => {
+    // const { data } = useFetch("GetDashboardItems?ID=25")
 
     const config = {
-        data: chartdata,
+        // data: data.MAKINE_TIP_ENVANTER,
         xField: 'MAKINE_TIPI',
         yField: 'MAKINE_SAYISI',
         paddingRight: 80,
