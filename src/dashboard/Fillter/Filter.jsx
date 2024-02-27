@@ -4,7 +4,7 @@ import { UserOutlined } from "@ant-design/icons";
 import FilterButton from './components/FilterButton';
 import FilterGrafik from './components/FilterGrafik';
 
-export default function Filter() {
+export default function Filter({onUpdateFilters}) {
   const [mobileView, setMobileView] = useState(window.innerWidth < 768);
 
   window.addEventListener("resize", () => {
@@ -83,7 +83,7 @@ export default function Filter() {
       </Space>
 
       <Space>
-        <FilterGrafik />
+        <FilterGrafik onUpdateFilters={onUpdateFilters} />
       </Space>
     </div>
   )

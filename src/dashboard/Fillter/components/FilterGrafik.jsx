@@ -3,30 +3,24 @@ import { useState } from 'react';
 import { Checkbox, Divider } from 'antd';
 
 const CheckboxGroup = Checkbox.Group;
-const plainOptions = ['İş Emirleri/ İş Talepleri Grafiği', 'İş Emri/ İş Talebi Durumları Grafiği', 'Makine Tiplerine Göre Envanter Dağılımı', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Periyodik Bakımlar Grafiği', 'Aylık Bakım Maliyetleri'];
+const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Makine Tiplerine Göre Envanter Dağılımı', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Periyodik Bakımlar Grafiği', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'İş Emri Durumu Grafiği', 'İş Talebi Durumu Grafiği', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Toplam Harcanan İş Gücü'];
 
-const FilterGrafik = () => {
-    const [open, setOpen] = useState(false);
-    const [checkedList, setCheckedList] = useState([]);
-
-    const handleOpenChange = (newOpen) => {
-        setOpen(newOpen);
-    };
-
-    const checkAll = plainOptions.length === checkedList.length;
-    const indeterminate = checkedList.length > 0 && checkedList.length < plainOptions.length;
+const FilterGrafik = ({ onUpdateFilters }) => {
+    const [checkedList, setCheckedList] = useState(plainOptions);
 
     const onChange = (checkedValues) => {
         setCheckedList(checkedValues);
+        onUpdateFilters(checkedValues); // Send checked values to parent component
     };
 
     const onCheckAllChange = (e) => {
-        setCheckedList(e.target.checked ? [...plainOptions] : []);
+        setCheckedList(e.target.checked ? plainOptions : []);
+        onUpdateFilters(e.target.checked ? plainOptions : []); // Send all values if "Tümü" checked
     };
 
     const content = (
         <>
-            <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
+            <Checkbox indeterminate={checkedList.length > 0 && checkedList.length < plainOptions.length} onChange={onCheckAllChange} checked={checkedList.length === plainOptions.length}>
                 Tümü
             </Checkbox>
             <Divider />
@@ -39,8 +33,6 @@ const FilterGrafik = () => {
             placement="bottom"
             content={content}
             trigger="click"
-            open={open}
-            onOpenChange={handleOpenChange}
         >
             <Button>Filtrele</Button>
         </Popover>

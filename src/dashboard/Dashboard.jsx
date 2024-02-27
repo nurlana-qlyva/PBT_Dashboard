@@ -1,35 +1,107 @@
-import { useState, useEffect } from "react";
-import useFetch from './useFetch'
-import { Spin } from 'antd';
+import React, { useState, useEffect, useMemo } from "react";
 import './dashboard.css';
-import TimeChart from "./Grafikler/TimeChart";
-import Chart from "./Grafikler/Chart";
+import TamamlanmisOranlar from "./Grafikler/TamamlanmisIsOranlari/TamamlanmisOranlar";
 import DashboardStatisticCards from "./DashboardStatisticCards/DashboardStatisticCards";
 import Filter from "./Fillter/Filter";
-import { Ayarlar } from "./Grafikler/components/Ayarlar";
-import MakineTipEnvanter from "./Grafikler/MakineTipEnvanter";
-import LokasyonDagilimTable from "./Grafikler/LokasyonDagilimTable";
-import BakimBarChart from "./Grafikler/BakimBarChart";
-import IsEmriOzetTablu from "./Grafikler/IsEmriOzetTablo";
-import IsTalepTipEnvanter from "./Grafikler/IsTalepTipEnvanter";
-import IsEmriTipEnvanter from "./Grafikler/IsEmriTipEnvanter";
-import IsEmriDurumEnvanter from "./Grafikler/IsEmriDurumEnvanter";
-import IsTalepDurumEnvanter from "./Grafikler/IsTalepDurumEnvanter";
+import LokasyonDagilimTable from "./Grafikler/LokasyonDagilimTable/LokasyonDagilimTable";
+import BakimBarChart from "./Grafikler/PeriyodikBakim/BakimBarChart";
+import IsEmriOzetTablo from "./Grafikler/IsEmriOzetTable/IsEmriOzetTablo";
+import IsTalepTipEnvanter from "./Grafikler/IsTalepTipEnvanter/IsTalepTipEnvanter";
+import IsEmriTipEnvanter from "./Grafikler/IsEmriTipEnvanter/IsEmriTipEnvanter";
+import IsEmriDurumEnvanter from "./Grafikler/IsEmriDurumEnvanter/IsEmriDurumEnvanter";
+import IsTalepDurumEnvanter from "./Grafikler/IsTalepDurumEnvanter/IsTalepDurumEnvanter";
+import PersonelIsGucu from "./Grafikler/PersonelIsGucu/PersonelIsGucu";
+import BakimIslemlerinZamanDagilimi from "./Grafikler/BakimIslemlerinZamanDagilimi/BakimIslemlerinZamanDagilimi";
+import ArizaliMakinelerTablo from "./Grafikler/ArizaliMakineler/ArizaliMakineler";
+import AylikBakimMaliyeti from "./Grafikler/AylikBakimMaliyeti/AylikBakimMaliyeti";
+import MakineTipEnvanter from "./Grafikler/MakineTipEnvanter/MakineTipEnvanter";
+import ToplamHarcananIsGucu from "./Grafikler/ToplamHarcananIsGucu/ToplamHarcananIsGucu";
 
-const aylikBakim = [
-  { name: 'Aylik bakim 1', star: 297 },
-  { name: 'Aylik bakim 2', star: 506 },
-  { name: 'Aylik bakim 3', star: 805 },
-  { name: 'Aylik bakim 4', star: 1478 },
-  { name: 'Aylik bakim 5', star: 2029 },
-  { name: 'Aylik bakim 6', star: 7100 },
-  { name: 'Aylik bakim 7', star: 7346 },
-  { name: 'Aylik bakim 8', star: 10178 },
-]
+import { Responsive, WidthProvider } from "react-grid-layout";
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 
-export default function Dashboard() {
+const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Makine Tiplerine Göre Envanter Dağılımı', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Periyodik Bakımlar Grafiği', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'İş Emri Durumu Grafiği', 'İş Talebi Durumu Grafiği', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Toplam Harcanan İş Gücü'];
+
+const components = [
+  {
+    id: 1,
+    key: 'İş Emri Tipi Grafiği',
+    component: <IsEmriTipEnvanter />
+  },
+  {
+    id: 2,
+    key: 'İş Talebi Tipi Grafiği',
+    component: <IsTalepTipEnvanter />
+  },
+  {
+    id: 3,
+    key: 'Tamamlanmış İş talepleri ve İş Emirleri Oranları',
+    component: <TamamlanmisOranlar />
+  },
+  {
+    id: 4,
+    key: 'Periyodik Bakımlar Grafiği',
+    component: <BakimBarChart />
+  },
+  {
+    id: 5,
+    key: 'Aylık Bakım Maliyetleri',
+    component: <AylikBakimMaliyeti />
+  },
+  {
+    id: 6,
+    key: 'Personel Bazında Harcanan İş Gücü',
+    component: <PersonelIsGucu />
+  },
+  {
+    id: 7,
+    key: 'İş Emri Durumu Grafiği',
+    component: <IsEmriDurumEnvanter />
+  },
+  {
+    id: 8,
+    key: 'İş Talebi Durumu Grafiği',
+    component: <IsTalepDurumEnvanter />
+  },
+  {
+    id: 9,
+    key: 'Toplam Harcanan İş Gücü',
+    component: <ToplamHarcananIsGucu />
+  },
+  {
+    id: 10,
+    key: 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı',
+    component: <BakimIslemlerinZamanDagilimi />
+  },
+  {
+    id: 11,
+    key: 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı',
+    component: <LokasyonDagilimTable />
+  },
+  {
+    id: 12,
+    key: 'Makine Tiplerine Göre Envanter Dağılımı',
+    component: <MakineTipEnvanter />
+  },
+  {
+    id: 13,
+    key: 'İş Emirleri Özet Tablosu',
+    component: <IsEmriOzetTablo />
+  },
+  {
+    id: 14,
+    key: 'Arızalı Makineler',
+    component: <ArizaliMakinelerTablo />
+  }
+];
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
+
+const Dashboard = () => {
   const [mobileView, setMobileView] = useState(window.innerWidth < 768);
-  const { isLoading } = useFetch("GetDashboardItems?ID=25")
+  const [filteredGraphs, setFilteredGraphs] = useState(plainOptions);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setMobileView(window.innerWidth < 768);
@@ -37,156 +109,46 @@ export default function Dashboard() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const updateFilters = (selectedGraphs) => {
+    setFilteredGraphs(selectedGraphs);
+  };
+  const memoizedFilteredGraphs = useMemo(() => filteredGraphs, [filteredGraphs]);
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDragStart = () => {
+    setIsDragging(true);
+  };
+
+  const handleDragStop = () => {
+    setIsDragging(false);
+  };
+
   return (
     <>
-      <Filter style={{ padding: mobileView ? "24px 0px" : 24 }} />
-
+      <Filter style={{ padding: mobileView ? "24px 0px" : 24 }} onUpdateFilters={updateFilters} />
       <div style={{ padding: mobileView ? "24px 0px" : 24 }}>
         <DashboardStatisticCards />
-
-        <>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '10px'
-          }}>
-
-            {/* 3lu */}
-            <div className="chart" style={{ width: 'calc(100% / 4 - 3 * 10px / 4)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>İş Emri Tipi Grafiği</h3>
-                    <Ayarlar chart={<IsEmriTipEnvanter />} />
-                  </div>
-                  <IsEmriTipEnvanter />
-                </>
-              )}
+        <ResponsiveGridLayout
+          className="layout"
+          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480 }}
+          cols={{ lg: 12, md: 10, sm: 6, xs: 4 }}
+          isDraggable={!isDragging}
+          onDragStart={handleDragStart}
+          onDragStop={handleDragStop}
+        >
+          {memoizedFilteredGraphs.map((graphKey, index) => (
+            <div key={graphKey} className="chart resizable-graph" data-grid={{ w: 4, h: 4, x: (index % 3) * 4, y: Math.floor(index / 3) * 4 }} onClick={handleClick}>
+              {components.find(component => component.key === graphKey).component}
             </div>
-            <div className="chart" style={{ width: 'calc(100% / 4 - 3 * 10px / 4)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>İş Talebi Tipi Grafiği</h3>
-                    <Ayarlar chart={<IsTalepTipEnvanter />} />
-                  </div>
-                  <IsTalepTipEnvanter />
-                </>
-              )}
-            </div>
-            <div className="chart" style={{ width: 'calc(100% / 2 -  5px)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>Makine Tiplerine Göre Envanter Dağılımı</h3>
-                    <Ayarlar chart={<MakineTipEnvanter />} />
-                  </div>
-                  <MakineTipEnvanter />
-                </>
-              )}
-            </div>
-
-            {/* 2li */}
-            <div className="chart" style={{ width: 'calc(100% / 2 -  5px)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>Tamamlanmış İş talepleri ve İş Emirleri Oranları</h3>
-                    <Ayarlar chart={<TimeChart />} />
-                  </div>
-                  <TimeChart />
-                </>
-              )}
-            </div>
-            <div className="chart" style={{ width: 'calc(100% / 2 -  5px)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>Aylık Bakım Maliyetleri</h3>
-                    <Ayarlar chart={<Chart data={aylikBakim} />} />
-                  </div>
-                  <Chart data={aylikBakim} />
-                </>
-              )}
-            </div>
-
-            {/* 3lu */}
-            <div className="chart" style={{ width: 'calc(100% / 3 - 2 * 10px / 3)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>Periyodik Bakımlar Grafiği</h3>
-                    <Ayarlar chart={<BakimBarChart />} />
-                  </div>
-                  <BakimBarChart />
-                </>
-              )}
-            </div>
-
-            <div className="chart" style={{ width: 'calc(100% / 3 - 2 * 10px / 3)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>İş Emri Durumu Grafiği</h3>
-                    <Ayarlar chart={<IsEmriDurumEnvanter />} />
-                  </div>
-                  <IsEmriDurumEnvanter />
-                </>
-              )}
-            </div>
-            <div className="chart" style={{ width: 'calc(100% / 3 - 2 * 10px / 3)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>İş Talebi Durumu Grafiği</h3>
-                    <Ayarlar chart={<IsTalepDurumEnvanter />} />
-                  </div>
-                  <IsTalepDurumEnvanter />
-                </>
-              )}
-            </div>
-
-
-            {/* tables 2li */}
-            <div className="chart" style={{ width: 'calc(100% / 2 -  5px)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>Lokasyon Bazında İş talepleri / İş Emmirleri Dağılımı</h3>
-                    <Ayarlar chart={<LokasyonDagilimTable />} />
-                  </div>
-                  <LokasyonDagilimTable />
-                </>
-              )}
-            </div>
-
-            <div className="chart" style={{ width: 'calc(100% / 2 -  5px)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>Arızalı Makineler</h3>
-                    <Ayarlar chart={<LokasyonDagilimTable />} />
-                  </div>
-                  <LokasyonDagilimTable />
-                </>
-              )}
-            </div>
-
-            <div className="chart" style={{ width: 'calc(100% / 2 -  5px)' }}>
-              {isLoading ? <Spin size="large" /> : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h3>İş Emirleri Özet Tablosu</h3>
-                    <Ayarlar chart={<IsEmriOzetTablu />} />
-                  </div>
-                  <IsEmriOzetTablu />
-                </>
-              )}
-            </div>
-          </div>
-        </>
-        {/* <Hatirlatici /> */}
+          ))}
+        </ResponsiveGridLayout>
       </div>
     </>
   );
-}
+};
+
+export default Dashboard;

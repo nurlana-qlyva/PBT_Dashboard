@@ -1,4 +1,5 @@
 import { Table } from 'antd';
+import { Ayarlar } from '../components/Ayarlar';
 
 const columns = [
     {
@@ -13,6 +14,14 @@ const columns = [
         align: 'center',
     },
     {
+        title: 'Toplam Maliyet',
+        dataIndex: 'amount',
+    },
+    {
+        title: 'Ortalama Çalışma Süresi (dk)',
+        dataIndex: 'time',
+    },
+    {
         title: 'Toplam Çalışma Süresi (dk)',
         dataIndex: 'time',
     },
@@ -24,6 +33,7 @@ const data = [
         name: 'Arıza',
         number: '3',
         time: '139417',
+        amount: '5674'
     },
     {
         key: '2',
@@ -63,9 +73,9 @@ const data = [
     },
 ];
 
-const TableFooter = ({arr}) => {
+const TableFooter = () => {
     return (
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <p><strong>Toplam:</strong></p>
             <p>78987</p>
 
@@ -73,14 +83,28 @@ const TableFooter = ({arr}) => {
     )
 }
 
-const IsEmriOzetTablu = () => {
-    return <Table
-        columns={columns}
-        dataSource={data}
-        bordered
-        // title={() => 'Header'}
-        footer={() => <TableFooter sum={data}/>}
-    />
+const IsEmriOzetTablo = () => {
+    return (
+        <div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <h3>İş Emirleri Özet Tablosu</h3>
+                <Ayarlar chart={<Table
+                    columns={columns}
+                    dataSource={data}
+                    bordered
+                    footer={() => <TableFooter sum={data} />}
+                />} />
+            </div>
+            <Table
+                columns={columns}
+                dataSource={data}
+                bordered
+                footer={() => <TableFooter sum={data} />}
+            />
+        </div>
+    )
 }
 
-export default IsEmriOzetTablu;
+export default IsEmriOzetTablo;
+
+
