@@ -11,7 +11,7 @@ export const ChartModal = ({chart}) => {
     const [open, setOpen] = useState(false)
 
     return (
-        <>
+        <div className="modal">
             <StyledButton type="secondary" onClick={() => setOpen(true)}>
                 Büyüt
             </StyledButton>
@@ -26,7 +26,7 @@ export const ChartModal = ({chart}) => {
             >
                 {chart}
             </Modal>
-        </>
+        </div>
     )
 }
 

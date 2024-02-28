@@ -1,6 +1,7 @@
 import { Button, Popover } from 'antd';
 import { useState } from 'react';
 import { Checkbox, Divider } from 'antd';
+import '../../dashboard.css'
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -20,13 +21,13 @@ const FilterGrafik = ({ onUpdateFilters }) => {
     };
 
     const content = (
-        <>
+        <div className='filter'>
             <Checkbox indeterminate={checkedList.length > 0 && checkedList.length < plainOptions.length} onChange={onCheckAllChange} checked={checkedList.length === plainOptions.length}>
                 Tümü
             </Checkbox>
             <Divider />
             <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} style={{ display: 'flex', flexDirection: 'column' }} />
-        </>
+        </div>
     );
 
     return (

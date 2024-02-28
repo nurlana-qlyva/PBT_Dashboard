@@ -74,6 +74,10 @@
   background-color: #000;
 }
 
+.filter .ant-checkbox-wrapper{
+  margin: 4px 0 !important;
+  font-size: 18px;
+}
 
 
 .resizable-graph {
