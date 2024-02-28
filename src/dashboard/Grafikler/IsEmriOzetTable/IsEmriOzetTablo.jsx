@@ -72,7 +72,7 @@ const data = [
         time: '93',
     },
 ];
-
+  
 const TableFooter = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
