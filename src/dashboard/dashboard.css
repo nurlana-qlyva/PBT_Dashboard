@@ -55,18 +55,7 @@
   background-color: #fff;
 }
 
-:where(.css-dev-only-do-not-override-1xg9z9n).ant-table-wrapper .ant-table-cell,
-:where(.css-dev-only-do-not-override-1xg9z9n).ant-table-wrapper .ant-table-cell,
-:where(.css-dev-only-do-not-override-1xg9z9n).ant-table-wrapper
-  .ant-table-thead
-  > tr
-  > th,
-:where(.css-dev-only-do-not-override-1xg9z9n).ant-table-wrapper
-  .ant-table-tbody
-  > tr
-  > td {
-  padding: 8px 16px !important;
-}
+
 
 .chart
   :where(.css-dev-only-do-not-override-1xg9z9n).ant-spin
