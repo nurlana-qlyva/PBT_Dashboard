@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import AxiosInstance from "../api/http";
 
-const useFetch = (url) => {
+const useFetch = (url, dependencies = []) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchEquipmentData = async () => {
+  const fetchData = async () => {
     try {
       setIsLoading(true);
       const response = await AxiosInstance.get(url);
@@ -22,11 +22,10 @@ const useFetch = (url) => {
   };
 
   useEffect(() => {
-    fetchEquipmentData();
-  }, []);
+    fetchData();
+  }, [url, ...dependencies]); // Include dependencies in the useEffect dependency array
 
-  return [data, isLoading]
+  return [data, isLoading];
 };
 
-export default useFetch
-
+export default useFetch;

@@ -1,10 +1,15 @@
-import { BaseLayout } from "./components/Header";
-import { FilterContextProvider } from "./context/FilterContext";
+import { BaseLayout } from "./components/BaseLayout";
+import { AylikBakimMaliyetiYearProvider } from "./dashboard/Grafikler/AylikBakimMaliyeti/YearContext";
+import { TamamlanmisIsOranlariYearProvider } from "./dashboard/Grafikler/TamamlanmisIsOranlari/YearContext";
 
 function App() {
 
   return (
-    <FilterContextProvider><BaseLayout /></FilterContextProvider>
+    <AylikBakimMaliyetiYearProvider>
+      <TamamlanmisIsOranlariYearProvider>
+        <BaseLayout />
+      </TamamlanmisIsOranlariYearProvider>
+    </AylikBakimMaliyetiYearProvider>
   )
 }
 

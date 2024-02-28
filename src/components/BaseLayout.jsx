@@ -37,7 +37,7 @@ export const BaseLayout = () => {
         <Layout style={{ minHeight: "100vh" }}>
 
             <Layout>
-                <Header style={{ padding: 0, background: colorBgContainer, display: "flex", alignItems: "center",  padding: mobileView ? "0 0px" : "0 24px"  }}>
+                <Header style={{ background: colorBgContainer, display: "flex", alignItems: "center",  padding: mobileView ? "0 0px" : "0 36px"  }}>
                     {mobileView && (
                         <Button
                             onClick={toggleCollapsed}

@@ -1,13 +1,24 @@
 import { useState } from 'react';
 import { Button, Popover, Space } from 'antd';
 import { EllipsisOutlined } from "@ant-design/icons"
+import YearDatePicker from "./YearDateComp";
+import MonthDatePicker from "./MonthDateComp";
 import styled from "styled-components";
-import { ChartModal } from './Modal';
+import DayDatePicker from './DayDateComp';
+import { ChartModal } from '../../components/Modal';
 
 const StyledButton = styled(Button)`
         border: none !important;
         box-shadow: none !important;
 `;
+
+const contentDate = (
+    <>
+        <DayDatePicker />
+        <MonthDatePicker />
+        <YearDatePicker />
+    </>
+)
 
 export const Ayarlar = ({ chart }) => {
     const [open, setOpen] = useState(false)
@@ -18,6 +29,9 @@ export const Ayarlar = ({ chart }) => {
     const content = (
         <Space direction="vertical">
             <ChartModal chart={chart} />
+            <Popover placement="rightTop" content={contentDate} style={{ border: 0 }}>
+                <StyledButton>Zamana göre seç</StyledButton>
+            </Popover>
         </Space>
     )
 

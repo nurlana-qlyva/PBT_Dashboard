@@ -1,14 +1,20 @@
 import { useState } from "react"
 import { Button, Modal } from 'antd';
+import styled from "styled-components";
+
+const StyledButton = styled(Button)`
+        border: none !important;
+        box-shadow: none !important;
+`;
 
 export const ChartModal = ({chart}) => {
     const [open, setOpen] = useState(false)
 
     return (
         <>
-            <Button type="secondary" onClick={() => setOpen(true)}>
+            <StyledButton type="secondary" onClick={() => setOpen(true)}>
                 Büyüt
-            </Button>
+            </StyledButton>
             <Modal
                 title="İş Emirleri/ İş Talepleri Grafiği"
                 centered
@@ -16,6 +22,7 @@ export const ChartModal = ({chart}) => {
                 onOk={() => setOpen(false)}
                 onCancel={() => setOpen(false)}
                 width={'calc(100% - 100px)'}
+                height={'calc(100vh - 120px)'}
             >
                 {chart}
             </Modal>
