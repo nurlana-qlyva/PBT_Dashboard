@@ -56,7 +56,7 @@ const LokasyonDagilimTable = () => {
             <style>
         {`
           .ant-table-cell {
-            padding: 4px 16px !important;
+            padding: 8px 16px !important;
           }
         `}
       </style>
