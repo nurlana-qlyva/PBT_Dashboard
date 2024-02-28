@@ -8,7 +8,6 @@ const columns = [
         dataIndex: 'name',
         width: 40,
         ellipsis: true,
-        fixed: 'left'
     },
     {
         title: 'Due',

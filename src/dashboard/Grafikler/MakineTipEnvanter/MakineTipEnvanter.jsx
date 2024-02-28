@@ -9,7 +9,6 @@ const columns = [
     dataIndex: 'MAKINE_TIPI',
     width: 60,
     ellipsis: true,
-    fixed: 'left'
   },
   {
     title: 'Adet',

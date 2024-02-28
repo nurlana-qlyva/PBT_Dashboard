@@ -8,7 +8,6 @@ const columns = [
         render: (text) => <a>{text}</a>,
         width: 60,
         ellipsis: true,
-        fixed: 'left'
     },
     {
         title: 'Sayı',
