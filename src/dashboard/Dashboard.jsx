@@ -103,6 +103,8 @@ const Dashboard = () => {
   const [filteredGraphs, setFilteredGraphs] = useState(plainOptions);
   const [isDragging, setIsDragging] = useState(false);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const [componentLayout, setComponentLayout] = useState([]);
+  const [localStorageKey, setLocalStorageKey] = useState("dashboard-layout");
 
   useEffect(() => {
     const container = document.getElementById('chart-container');
@@ -119,9 +121,35 @@ const Dashboard = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const savedLayout = localStorage.getItem(localStorageKey);
+    if (savedLayout) {
+      setComponentLayout(JSON.parse(savedLayout));
+    }
+  }, [localStorageKey]);
+
+  useEffect(() => {
+    if (componentLayout.length > 0) {
+      localStorage.setItem(localStorageKey, JSON.stringify(componentLayout));
+    }
+  }, [componentLayout, localStorageKey]);
+
+  useEffect(() => {
+    const savedLayout = localStorage.getItem(localStorageKey);
+    if (savedLayout) {
+      setComponentLayout(JSON.parse(savedLayout));
+    }
+  }, [localStorageKey]);
+
   const updateFilters = (selectedGraphs) => {
     setFilteredGraphs(selectedGraphs);
   };
+
+  const handleLayoutChange = (layout) => {
+    setComponentLayout(layout);
+    localStorage.setItem(localStorageKey, JSON.stringify(layout));
+  };
+
   const memoizedFilteredGraphs = useMemo(() => filteredGraphs, [filteredGraphs]);
 
   const handleClick = (e) => {
@@ -149,6 +177,8 @@ const Dashboard = () => {
           isDraggable={!isDragging}
           onDragStart={handleDragStart}
           onDragStop={handleDragStop}
+          onLayoutChange={handleLayoutChange} // Add this line to handle layout change
+          layout={componentLayout} // Pass layout state to set initial layout
         >
           {memoizedFilteredGraphs.map((graphKey, index) => (
             <div key={graphKey} className="chart resizable-graph" data-grid={{ w: 4, h: 4, minH: 4, x: (index % 3) * 4, y: Math.floor(index / 3) * 4 }} onClick={handleClick}>

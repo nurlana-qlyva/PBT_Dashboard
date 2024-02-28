@@ -7,17 +7,24 @@ const columns = [
   {
     title: 'Makine tipi',
     dataIndex: 'MAKINE_TIPI',
+    width: 60,
+    ellipsis: true,
+    fixed: 'left'
   },
   {
     title: 'Adet',
     className: 'column-money',
     dataIndex: 'MAKINE_SAYISI',
     align: 'center',
+    width: 100,
+    ellipsis: true,
   },
   {
     title: 'Yüzde',
     dataIndex: 'MAKINE_SAYISI',
     render: (text) => `${text}%`,
+    width: 100,
+    ellipsis: true,
   },
 ];
 
@@ -47,6 +54,9 @@ const MakineTipEnvanter = () => {
             dataSource={data}
             bordered
             pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
+            scroll={{
+              x: 1500,
+            }}
           />)
       }
     </div>

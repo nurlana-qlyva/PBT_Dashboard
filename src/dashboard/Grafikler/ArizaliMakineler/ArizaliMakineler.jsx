@@ -6,18 +6,27 @@ const columns = [
     {
         title: 'Name',
         dataIndex: 'name',
+        width: 40,
+        ellipsis: true,
+        fixed: 'left',
     },
     {
         title: 'Due',
         dataIndex: 'due',
+        width: 120,
+        ellipsis: true,
     },
     {
         title: 'Location',
         dataIndex: 'location',
+        width: 120,
+        ellipsis: true,
     },
     {
         title: '',
         dataIndex: 'order',
+        width: 120,
+        ellipsis: true,
     },
 ];
 
@@ -51,7 +60,7 @@ const ArizaliMakinelerTablo = () => {
 
 
     return (
-        <div style={{width: '100%', height: '100%'}}>
+        <div style={{ width: '100%', height: '100%' }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>Arızalı Makineler</h3>
                 <Ayarlar chart={<Table
@@ -66,6 +75,9 @@ const ArizaliMakinelerTablo = () => {
                 columns={columns}
                 dataSource={data}
                 pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
+                scroll={{
+                    x: 1500,
+                }}
             />
         </div>
     );

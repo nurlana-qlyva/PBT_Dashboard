@@ -6,24 +6,35 @@ const columns = [
         title: 'Satır etiketleri',
         dataIndex: 'name',
         render: (text) => <a>{text}</a>,
+        width: 60,
+        ellipsis: true,
+        fixed: 'left'
     },
     {
         title: 'Sayı',
         className: 'column-money',
         dataIndex: 'number',
         align: 'center',
+        width: 80,
+        ellipsis: true
     },
     {
         title: 'Toplam Maliyet',
         dataIndex: 'amount',
+        width: 100,
+        ellipsis: true
     },
     {
         title: 'Ortalama Çalışma Süresi (dk)',
         dataIndex: 'time',
+        width: 100,
+        ellipsis: true
     },
     {
         title: 'Toplam Çalışma Süresi (dk)',
         dataIndex: 'time',
+        width: 100,
+        ellipsis: true
     },
 ];
 
@@ -72,7 +83,7 @@ const data = [
         time: '93',
     },
 ];
-  
+
 const TableFooter = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -85,7 +96,7 @@ const TableFooter = () => {
 
 const IsEmriOzetTablo = () => {
     return (
-        <div style={{width: '100%', height: '100%'}}>
+        <div style={{ width: '100%', height: '100%' }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>İş Emirleri Özet Tablosu</h3>
                 <Ayarlar chart={<Table
@@ -100,6 +111,9 @@ const IsEmriOzetTablo = () => {
                 dataSource={data}
                 bordered
                 footer={() => <TableFooter sum={data} />}
+                scroll={{
+                    x: 1500,
+                }}
             />
         </div>
     )
