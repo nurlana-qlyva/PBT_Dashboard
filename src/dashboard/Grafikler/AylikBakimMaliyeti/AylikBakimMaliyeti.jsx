@@ -33,7 +33,7 @@ const AylikBakimMaliyeti = () => {
     yField: 'AYLIK_BAKIM_ISEMRI_MALIYET',
     scrollbar: {
       x: {
-        ratio: 3,
+        ratio:3,
       },
     },
   };

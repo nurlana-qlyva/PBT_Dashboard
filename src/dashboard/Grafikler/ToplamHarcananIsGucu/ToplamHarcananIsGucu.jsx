@@ -34,7 +34,7 @@ const ToplamHarcananIsGucu = () => {
         data,
         angleField: 'value',
         colorField: 'type',
-        radius: .7,
+        radius: .8,
         label: {
             text: (d) => `${d.type}\n${d.value}`,
             position: 'spider',
