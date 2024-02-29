@@ -22,7 +22,7 @@ const TamamlanmisOranlar = () => {
     if (data) {
         formattedData = data.map(item => ({
             ...item,
-            AY: convertMonthNumberToName(item.AY)
+            AY: convertMonthNumberToName(item.AY),
         }));
     }
 

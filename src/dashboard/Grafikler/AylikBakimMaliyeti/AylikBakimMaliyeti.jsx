@@ -23,14 +23,15 @@ const AylikBakimMaliyeti = () => {
   if (data) {
     formattedData = data.map(item => ({
       ...item,
-      AY: convertMonthNumberToName(item.AY)
+      AY: convertMonthNumberToName(item.AY),
+      "İş emri maliyeti": item.AYLIK_BAKIM_ISEMRI_MALIYET
     }));
   }
 
   const config = {
     data: formattedData,
     xField: 'AY',
-    yField: 'AYLIK_BAKIM_ISEMRI_MALIYET',
+    yField: 'İş emri maliyeti',
     scrollbar: {
       x: {
         ratio:3,

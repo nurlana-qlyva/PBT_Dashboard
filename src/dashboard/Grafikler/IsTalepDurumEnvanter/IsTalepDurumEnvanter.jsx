@@ -9,13 +9,23 @@ const IsTalepDurumEnvanter = () => {
 
     // const total = data.reduce((acc, entry) => acc + entry.IS_TALEP_SAYISI, 0);
 
+    let formattedData = [];
+
+    if (data) {
+        formattedData = data.map(item => ({
+            ...item,
+            "İş talep sayısı": item.IS_TALEP_SAYISI,
+            "İş talep durumu": item.IS_TALEP_SAYISI
+        }));
+    }
+
     const config = {
-        data,
-        angleField: 'IS_TALEP_SAYISI',
+        data: formattedData,
+        angleField: 'İş talep sayısı',
         colorField: 'IST_DURUM_ID',
         radius: .8,
         label: {
-            text: (d) => `${d.IS_TALEP_SAYISI}`,
+            text: (d) => `${d["İş talep sayısı"]}`,
             position: 'spider',
         },
         legend: false

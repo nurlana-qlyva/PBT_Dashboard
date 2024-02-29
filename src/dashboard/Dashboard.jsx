@@ -180,7 +180,7 @@ const Dashboard = () => {
           layout={componentLayout} // Pass layout state to set initial layout
         >
           {memoizedFilteredGraphs.map((graphKey, index) => (
-            <div key={graphKey} className="chart resizable-graph" data-grid={{ w: 4, h: 4, minH: 4, x: (index % 3) * 4, y: Math.floor(index / 3) * 4 }} onClick={handleClick}>
+            <div key={graphKey} className="chart resizable-graph" data-grid={{ w: 4, h: 4, x: (index % 3) * 4, y: Math.floor(index / 3) * 4 }} onClick={handleClick}>
               {React.cloneElement(components.find(component => component.key === graphKey).component, { containerSize })}
             </div>
           ))}

@@ -8,11 +8,20 @@ const IsTalepTipEnvanter = () => {
 
   // const total = data.reduce((acc, entry) => acc + entry.TALEP_SAYISI, 0);
 
-  const config = {
-    data,
+  let formattedData = [];
 
-    angleField: 'TALEP_SAYISI',
-    colorField: 'TALEP_TIPI',
+  if (data) {
+    formattedData = data.map(item => ({
+      ...item,
+      "İş talebi sayısı": item.TALEP_SAYISI,
+      "İş talebi tipi": item.TALEP_TIPI
+    }));
+  }
+
+  const config = {
+    data: formattedData,
+    angleField: 'İş talebi sayısı',
+    colorField: 'İş talebi tipi',
     radius: .8,
     label: {
       text: (d) => `${d.TALEP_TIPI}\n ${d.TALEP_SAYISI}`,
@@ -22,10 +31,10 @@ const IsTalepTipEnvanter = () => {
     legend: false
   };
 
-  const modalConfig = {...config, radius: .969}
+  const modalConfig = { ...config, radius: .969 }
 
   return (
-    <div style={{height: '100%', width: '100%'}}>
+    <div style={{ height: '100%', width: '100%' }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h3>İş Talebi Tipi Grafiği</h3>
         <Ayarlar chart={<Pie {...modalConfig} />} />
