@@ -21,7 +21,7 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 
-const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Periyodik Bakımlar Grafiği', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'İş Emri Durumu Grafiği', 'İş Talebi Durumu Grafiği', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Toplam Harcanan İş Gücü', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Makine Tiplerine Göre Envanter Dağılımı'];
+const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'İş Emri Durumu Grafiği', 'İş Talebi Durumu Grafiği', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Toplam Harcanan İş Gücü', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Makine Tiplerine Göre Envanter Dağılımı'];
 
 const components = [
   {
@@ -39,11 +39,11 @@ const components = [
     key: 'Tamamlanmış İş talepleri ve İş Emirleri Oranları',
     component: <TamamlanmisOranlar />
   },
-  {
-    id: 4,
-    key: 'Periyodik Bakımlar Grafiği',
-    component: <BakimBarChart />
-  },
+  // {
+  //   id: 4,
+  //   key: 'Periyodik Bakımlar Grafiği',
+  //   component: <BakimBarChart />
+  // },
   {
     id: 5,
     key: 'Aylık Bakım Maliyetleri',

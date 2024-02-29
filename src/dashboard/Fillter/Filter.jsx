@@ -3,6 +3,7 @@ import { Space } from 'antd';
 import { UserOutlined } from "@ant-design/icons";
 import FilterButton from './components/FilterButton';
 import FilterGrafik from './components/FilterGrafik';
+import LokasyonTablo from './components/LokasyonFilter';
 
 export default function Filter({onUpdateFilters}) {
   const [mobileView, setMobileView] = useState(window.innerWidth < 768);
@@ -76,10 +77,7 @@ export default function Filter({onUpdateFilters}) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: mobileView ? "0" : '0px 24px' }}>
       <Space wrap>
-        <FilterButton title={'Title'} buttonTitle={'Tüm Lokasyonlar'} filterProps={filterProps} />
-        <FilterButton title={'Title'} buttonTitle={'Time'} filterProps={filterProps} />
-        <FilterButton title={'Title'} buttonTitle={'Active'} filterProps={filterProps} />
-        <FilterButton title={'Title'} buttonTitle={'All locations'} filterProps={filterProps} />
+        <LokasyonTablo/>
       </Space>
 
       <Space>

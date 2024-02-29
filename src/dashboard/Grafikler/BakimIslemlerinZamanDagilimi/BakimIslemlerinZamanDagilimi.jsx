@@ -33,7 +33,7 @@ const BakimIslemlerinZamanDagilimi = () => {
     return (
         <div style={{width: '100%', height: '100%'}} className='column'>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>Bakım İşlemlerinin Zaman İçerisinde Dağılımı</h3>
+                <h3>İş Emirlerinin Zaman İçerisinde Dağılımı</h3>
                 <Ayarlar chart={<Line {...config} />} />
             </div>
             <Line {...config} />
