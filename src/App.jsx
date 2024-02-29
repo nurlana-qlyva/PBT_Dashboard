@@ -1,5 +1,6 @@
 import { BaseLayout } from "./components/BaseLayout";
 import { AylikBakimMaliyetiYearProvider } from "./dashboard/Grafikler/AylikBakimMaliyeti/YearContext";
+import { IsEmirlerininZamanDagilimiYearProvider } from "./dashboard/Grafikler/IsEmirlerininZamanDagilimi/YearContext";
 import { TamamlanmisIsOranlariYearProvider } from "./dashboard/Grafikler/TamamlanmisIsOranlari/YearContext";
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
   return (
     <AylikBakimMaliyetiYearProvider>
       <TamamlanmisIsOranlariYearProvider>
-        <BaseLayout />
+        <IsEmirlerininZamanDagilimiYearProvider>
+          <BaseLayout />
+        </IsEmirlerininZamanDagilimiYearProvider>
       </TamamlanmisIsOranlariYearProvider>
     </AylikBakimMaliyetiYearProvider>
   )
