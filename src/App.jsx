@@ -15,6 +15,7 @@ function App() {
         <IsEmirlerininZamanDagilimiYearProvider>
           <PersonelIsGucuDateProvider>
             <ToplamHarcanaIsGucuDateProvider>
+              
               <IsEmriOzetTabloDateProvider>
                 <LokasyonDagilimDateProvider>
                   <BaseLayout />
