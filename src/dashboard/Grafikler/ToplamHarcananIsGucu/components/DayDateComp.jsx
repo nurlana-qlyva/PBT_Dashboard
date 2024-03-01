@@ -3,6 +3,8 @@ import { Button, Popover, ConfigProvider } from 'antd';
 import { useForm, Controller } from "react-hook-form";
 import { useDate } from '../DateContext';
 
+const { RangePicker } = DatePicker;
+
 const DatePickerComp = () => {
     const { handleSubmit, control } = useForm()
     const { setSelectedDate } = useDate();
@@ -18,13 +20,12 @@ const DatePickerComp = () => {
                 control={control}
                 defaultValue={null}
                 render={({ field }) => (
-                    <DatePicker
+                    <RangePicker
                         {...field}
                         onChange={(date, dateString) => {
                             field.onChange(date);
                             onChange(date, dateString);
                         }}
-                        picker="day"
                     />
                 )}
             />
