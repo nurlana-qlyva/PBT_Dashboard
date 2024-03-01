@@ -37,7 +37,6 @@ const IsEmirlerininZamanDagilimi = () => {
         style: {
             lineWidth: 2,
         },
-        legend: false
     };
 
     return (
