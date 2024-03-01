@@ -1,6 +1,8 @@
-import { Table } from 'antd';
-import { useState } from 'react';
-import { Ayarlar } from '../components/Ayarlar';
+import { Table, Spin } from 'antd';
+import { useMemo, useState } from 'react';
+import { Ayarlar } from './components/Ayarlar';
+import { useDate } from './DateContext';
+import useFetch from '../../../hooks/useFetch';
 
 const columns = [
     {
@@ -23,19 +25,19 @@ const columns = [
     },
 ];
 
-const data = [];
-for (let i = 0; i < 46; i++) {
-    data.push({
-        key: i,
-        LOKASYON: `Edward King ${i}`,
-        TOPLAM_IS_TALEBI: 456,
-        TOPLAM_IS_EMRI: 56,
-    });
-}
-
 const LokasyonDagilimTable = () => {
+    const { selectedDate } = useDate();
+    const [data, isLoading] = useFetch(`GetLokasyonBazindaIsEmriTalebi?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [pageSize, setPageSize] = useState(10);
+
+    const formattedData = useMemo(() => {
+        if (!data) return [];
+
+        return data.map(item => ({
+            ...item
+        }));
+    }, [data]);
 
     const onSelectChange = (newSelectedRowKeys) => {
         setSelectedRowKeys(newSelectedRowKeys);
@@ -66,19 +68,21 @@ const LokasyonDagilimTable = () => {
                 <Ayarlar chart={<Table
                     rowSelection={rowSelection}
                     columns={columns}
-                    dataSource={data}
+                    dataSource={formattedData}
                     pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
                 />} />
             </div>
-            <Table
-                rowSelection={rowSelection}
-                columns={columns}
-                dataSource={data}
-                pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
-                scroll={{
-                    x: 600,
-                }}
-            />
+            {isLoading ? <Spin size="large" /> : (
+                <Table
+                    rowSelection={rowSelection}
+                    columns={columns}
+                    dataSource={formattedData}
+                    pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
+                    scroll={{
+                        x: 600,
+                    }}
+                />
+            )}
         </div>
     );
 }

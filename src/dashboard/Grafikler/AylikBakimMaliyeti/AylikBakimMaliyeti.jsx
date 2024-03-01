@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Column } from '@ant-design/plots';
 import { Spin } from 'antd';
 import useFetch from '../../../hooks/useFetch';
@@ -17,15 +17,15 @@ const AylikBakimMaliyeti = () => {
   const { selectedDate } = useDate();
   const [data, isLoading] = useFetch(`GetAylikBakimIsEmriMaliyet?ID=2&year=${selectedDate}`, [selectedDate]);
 
-  let formattedData = [];
+  const formattedData = useMemo(() => {
+    if (!data) return [];
 
-  if (data) {
-    formattedData = data.map(item => ({
+    return data.map(item => ({
       ...item,
       AY: convertMonthNumberToName(item.AY),
       "İş emri maliyeti": item.AYLIK_BAKIM_ISEMRI_MALIYET
     }));
-  }
+  }, [data]);
 
   const config = {
     data: formattedData,

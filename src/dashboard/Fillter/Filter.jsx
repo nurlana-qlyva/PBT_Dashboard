@@ -75,10 +75,10 @@ export default function Filter({onUpdateFilters}) {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: mobileView ? "0" : '0px 24px' }}>
-      <Space wrap>
+    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: mobileView ? "0" : '0px 24px' }}>
+      {/* <Space wrap>
         <LokasyonTablo/>
-      </Space>
+      </Space> */}
 
       <Space>
         <FilterGrafik onUpdateFilters={onUpdateFilters} />

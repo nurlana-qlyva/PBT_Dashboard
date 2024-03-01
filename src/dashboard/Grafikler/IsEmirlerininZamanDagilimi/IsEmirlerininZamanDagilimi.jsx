@@ -1,4 +1,5 @@
-import { Line, Spin } from '@ant-design/plots';
+import { Line } from '@ant-design/plots';
+import { Spin } from "antd";
 import { Ayarlar } from './components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
 import { useDate } from './DateContext';
