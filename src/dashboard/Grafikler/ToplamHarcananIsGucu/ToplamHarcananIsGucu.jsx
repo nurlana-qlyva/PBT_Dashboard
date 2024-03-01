@@ -1,13 +1,13 @@
 import { Pie } from '@ant-design/plots';
 import { Spin } from 'antd';
-import { Ayarlar } from '../components/Ayarlar';
-import { useYear } from './YearContext';
+import { Ayarlar } from './components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
+import { useDate } from './DateContext';
 
 const ToplamHarcananIsGucu = () => {
-    const { selectedYear } = useYear();
-    const [data, isLoading] = useFetch(`GetToplamHarcananIsGuc?startDate=${selectedYear[0]}&endDate=${selectedYear[1]}`, [selectedYear]);
-
+    const { selectedDate } = useDate();
+    const [data, isLoading] = useFetch(`GetToplamHarcananIsGuc?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
+    
     let formattedData = [];
 
     if (data) {
@@ -16,6 +16,7 @@ const ToplamHarcananIsGucu = () => {
             Dakika: item.DAKIKA
         }));
     }
+
 
     const config = {
         appendPadding: 10,

@@ -105,6 +105,7 @@ const Dashboard = () => {
   const [componentLayout, setComponentLayout] = useState([]);
   const [localStorageKey, setLocalStorageKey] = useState("dashboard-layout");
 
+
   useEffect(() => {
     const container = document.getElementById('chart-container');
 

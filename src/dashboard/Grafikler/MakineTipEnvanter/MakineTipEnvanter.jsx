@@ -7,7 +7,7 @@ const columns = [
   {
     title: 'Makine tipi',
     dataIndex: 'MAKINE_TIPI',
-    width: 60,
+    // width: 60,
     ellipsis: true,
   },
   {
@@ -15,14 +15,14 @@ const columns = [
     className: 'column-money',
     dataIndex: 'MAKINE_SAYISI',
     align: 'center',
-    width: 100,
+    // width: 100,
     ellipsis: true,
   },
   {
     title: 'Yüzde',
     dataIndex: 'MAKINE_SAYISI',
     render: (text) => `${text}%`,
-    width: 100,
+    // width: 100,
     ellipsis: true,
   },
 ];
@@ -54,7 +54,7 @@ const MakineTipEnvanter = () => {
             bordered
             pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
             scroll={{
-              x: 1500,
+              x: 600,
             }}
           />)
       }

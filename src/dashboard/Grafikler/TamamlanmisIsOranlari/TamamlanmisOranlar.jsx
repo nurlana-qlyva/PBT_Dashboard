@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import { Column } from '@ant-design/plots';
 import { Spin } from "antd";
 import useFetch from '../../../hooks/useFetch';
@@ -17,16 +18,16 @@ const TamamlanmisOranlar = () => {
     const { selectedDate } = useDate();
     const [data, isLoading] = useFetch(`GetTamamlanmisIsEmirleriIsTalepleri?ID=2&year=${selectedDate}`, [selectedDate]);
 
-    let formattedData = [];
+    const formattedData = useMemo(() => {
+        if (!data) return [];
 
-    if (data) {
-        formattedData = data.map(item => ({
+        return data.map(item => ({
             ...item,
             AY: convertMonthNumberToName(item.AY),
         }));
-    }
+    }, [data]);
 
-    const config = {
+    const config = useMemo(() => ({
         data: formattedData,
         xField: 'AY',
         yField: 'DEGER',
@@ -46,16 +47,15 @@ const TamamlanmisOranlar = () => {
             active: { linkFill: 'rgba(0,0,0,0.25)', stroke: 'black', lineWidth: 0.5 },
             inactive: { opacity: 0.5 },
         },
-        
-    };
+    }), [formattedData]);
 
     return (
-        <div style={{width: '100%', height: '100%'}} className='column'>
+        <div style={{ width: '100%', height: '100%' }} className='column'>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>Tamamlanmış İş talepleri ve İş Emirleri Oranları</h3>
                 <Ayarlar chart={<Column {...config} />} />
             </div>
-            {isLoading ? <Spin size="large" /> : <Column {...config}/>}
+            {isLoading ? <Spin size="large" /> : <Column {...config} />}
         </div>
     );
 };

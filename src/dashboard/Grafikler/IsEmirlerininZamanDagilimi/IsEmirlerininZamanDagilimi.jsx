@@ -1,4 +1,4 @@
-import { Line } from '@ant-design/plots';
+import { Line, Spin } from '@ant-design/plots';
 import { Ayarlar } from './components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
 import { useDate } from './DateContext';
@@ -36,7 +36,7 @@ const IsEmirlerininZamanDagilimi = () => {
         },
         style: {
             lineWidth: 2,
-        },
+        }
     };
 
     return (
@@ -45,8 +45,7 @@ const IsEmirlerininZamanDagilimi = () => {
                 <h3>İş Emirlerinin Zaman İçerisinde Dağılımı</h3>
                 <Ayarlar chart={<Line {...config} />} />
             </div>
-            <Line {...config} />
-
+            {isLoading ? <Spin size="large" /> : <Line {...config} />}
             <div id='over'></div>
         </div>
     );

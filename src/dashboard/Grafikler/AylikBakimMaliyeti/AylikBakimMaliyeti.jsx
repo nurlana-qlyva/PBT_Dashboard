@@ -44,7 +44,7 @@ const AylikBakimMaliyeti = () => {
         <h3>Aylık Bakım Maliyetleri</h3>
         <Ayarlar chart={<Column {...config} />} />
       </div>
-      {isLoading ? <Spin size="large" /> : <Column {...config} />} {/* Fixed width and height */}
+      {isLoading ? <Spin size="large" /> : <Column {...config} />}
     </div>
   );
 };

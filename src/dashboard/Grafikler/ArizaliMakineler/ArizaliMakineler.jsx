@@ -1,6 +1,7 @@
-import { Table } from 'antd';
+import { Table, Spin } from 'antd';
 import { useState } from 'react';
 import { Ayarlar } from '../components/Ayarlar';
+import useFetch from '../../../hooks/useFetch';
 
 const columns = [
     {
@@ -38,6 +39,7 @@ const columns = [
 const ArizaliMakinelerTablo = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [pageSize, setPageSize] = useState(10);
+    const [data, isLoading] = useFetch(`GetArizaliMakineler`);
 
     const onSelectChange = (newSelectedRowKeys) => {
         setSelectedRowKeys(newSelectedRowKeys);
@@ -60,19 +62,20 @@ const ArizaliMakinelerTablo = () => {
                 <Ayarlar chart={<Table
                     rowSelection={rowSelection}
                     columns={columns}
-                    // dataSource={data}
+                    dataSource={data}
                     pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
                 />} />
             </div>
-            <Table
+            {isLoading ? <Spin size="large" /> : <Table
                 rowSelection={rowSelection}
                 columns={columns}
-                // dataSource={data}
+                dataSource={data}
                 pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
                 scroll={{
                     x: 1000,
                 }}
-            />
+            />}
+
         </div>
     );
 }

@@ -1,5 +1,7 @@
-import { Table } from 'antd';
-import { Ayarlar } from '../components/Ayarlar';
+import { Table, Spin } from 'antd';
+import { Ayarlar } from './components/Ayarlar';
+import useFetch from '../../../hooks/useFetch';
+import { useDate } from './DateContext';
 
 const columns = [
     {
@@ -37,48 +39,56 @@ const columns = [
     },
 ];
 
-const data = [
-    {
-        key: '1',
-        IS_EMRI_TIPI: 'Arıza',
-        IS_EMRI_SAYISI: '3',
-        TOPLAM_CALISMA_SURESI: '139417',
-        ORTALAMA_CALISMA_SURESI: '139417/3',
-        TOPLAM_MALIYET: '5674'
-    }
-];
+const TableFooter = ({ sum }) => {
+    const toplamDk = sum.reduce((a, c) => a + c.TOPLAM_CALISMA_SURESI, 0)
 
-const TableFooter = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <p><strong>Toplam:</strong></p>
-            <p>78987</p>
+            <p>{toplamDk}</p>
 
         </div>
     )
 }
 
 const IsEmriOzetTablo = () => {
+    const { selectedDate } = useDate();
+    const [data, isLoading] = useFetch(`GetIsEmriOzetTable?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
+
+    let formattedData = [];
+
+    if (data) {
+        formattedData = data.map(item => (
+            {
+                ...item,
+                ORTALAMA_CALISMA_SURESI: (item.TOPLAM_CALISMA_SURESI / item.IS_EMRI_SAYISI).toFixed(2)
+            }
+        ))
+    }
+
     return (
         <div style={{ width: '100%', height: '100%' }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>İş Emirleri Özet Tablosu</h3>
                 <Ayarlar chart={<Table
                     columns={columns}
-                    dataSource={data}
+                    dataSource={formattedData}
                     bordered
-                    footer={() => <TableFooter sum={data} />}
+                    footer={() => <TableFooter sum={formattedData} />}
                 />} />
             </div>
-            <Table
-                columns={columns}
-                dataSource={data}
-                bordered
-                footer={() => <TableFooter sum={data} />}
-                scroll={{
-                    x: 1000,
-                }}
-            />
+            {isLoading ? <Spin size="large" /> : (
+                <Table
+                    columns={columns}
+                    dataSource={formattedData}
+                    bordered
+                    footer={() => <TableFooter sum={formattedData} />}
+                    scroll={{
+                        x: 1000,
+                    }}
+                />
+            )}
+
         </div>
     )
 }
