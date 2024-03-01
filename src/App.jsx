@@ -1,24 +1,24 @@
 import { BaseLayout } from "./components/BaseLayout";
-import { AylikBakimMaliyetiYearProvider } from "./dashboard/Grafikler/AylikBakimMaliyeti/YearContext";
-import { IsEmirlerininZamanDagilimiYearProvider } from "./dashboard/Grafikler/IsEmirlerininZamanDagilimi/YearContext";
-import { PersonelIsGucuYearProvider } from "./dashboard/Grafikler/PersonelIsGucu/YearContext";
-import { TamamlanmisIsOranlariYearProvider } from "./dashboard/Grafikler/TamamlanmisIsOranlari/YearContext";
+import { AylikBakimMaliyetiDateProvider } from "./dashboard/Grafikler/AylikBakimMaliyeti/DateContext";
+import { IsEmirlerininZamanDagilimiYearProvider } from "./dashboard/Grafikler/IsEmirlerininZamanDagilimi/DateContext";
+import { PersonelIsGucuDateProvider } from "./dashboard/Grafikler/PersonelIsGucu/DateContext";
+import { TamamlanmisIsOranlariDateProvider } from "./dashboard/Grafikler/TamamlanmisIsOranlari/DateContext";
 import { ToplamHarcanaIsGucuYearProvider } from "./dashboard/Grafikler/ToplamHarcananIsGucu/YearContext";
 
 function App() {
 
   return (
-    <AylikBakimMaliyetiYearProvider>
-      <TamamlanmisIsOranlariYearProvider>
+    <AylikBakimMaliyetiDateProvider>
+      <TamamlanmisIsOranlariDateProvider>
         <IsEmirlerininZamanDagilimiYearProvider>
-          <PersonelIsGucuYearProvider>
+          <PersonelIsGucuDateProvider>
             <ToplamHarcanaIsGucuYearProvider>
               <BaseLayout />
             </ToplamHarcanaIsGucuYearProvider>
-          </PersonelIsGucuYearProvider>
+          </PersonelIsGucuDateProvider>
         </IsEmirlerininZamanDagilimiYearProvider>
-      </TamamlanmisIsOranlariYearProvider>
-    </AylikBakimMaliyetiYearProvider>
+      </TamamlanmisIsOranlariDateProvider>
+    </AylikBakimMaliyetiDateProvider>
   )
 }
 

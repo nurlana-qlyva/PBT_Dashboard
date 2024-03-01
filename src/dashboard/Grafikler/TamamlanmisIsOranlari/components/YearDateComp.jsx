@@ -1,14 +1,14 @@
 import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
 import { useForm, Controller } from "react-hook-form";
-import { useYear } from '../YearContext';
+import { useDate } from '../DateContext';
 
 const DatePickerComp = () => {
     const { handleSubmit, control } = useForm()
-    const { setSelectedYear } = useYear();
+    const { setSelectedDate} = useDate();
 
     const onChange = (date, dateString) => {
-        setSelectedYear(dateString);
+        setSelectedDate(dateString);
     };
 
     return (

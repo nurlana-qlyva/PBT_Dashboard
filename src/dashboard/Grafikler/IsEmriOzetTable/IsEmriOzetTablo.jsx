@@ -3,36 +3,36 @@ import { Ayarlar } from '../components/Ayarlar';
 
 const columns = [
     {
-        title: 'Satır etiketleri',
-        dataIndex: 'name',
+        title: 'İş Emri Tipi',
+        dataIndex: 'IS_EMRI_TIPI',
         render: (text) => <a>{text}</a>,
-        width: 60,
+        // width: 60,
         ellipsis: true,
     },
     {
-        title: 'Sayı',
+        title: 'İş Emri Sayısı',
         className: 'column-money',
-        dataIndex: 'number',
+        dataIndex: 'IS_EMRI_SAYISI',
         align: 'center',
-        width: 80,
+        // width: 80,
         ellipsis: true
     },
     {
         title: 'Toplam Maliyet',
-        dataIndex: 'amount',
-        width: 100,
+        dataIndex: 'TOPLAM_MALIYET',
+        // width: 100,
         ellipsis: true
     },
     {
         title: 'Ortalama Çalışma Süresi (dk)',
-        dataIndex: 'time',
-        width: 100,
+        dataIndex: 'ORTALAMA_CALISMA_SURESI',
+        // width: 100,
         ellipsis: true
     },
     {
         title: 'Toplam Çalışma Süresi (dk)',
-        dataIndex: 'time',
-        width: 100,
+        dataIndex: 'TOPLAM_CALISMA_SURESI',
+        // width: 100,
         ellipsis: true
     },
 ];
@@ -40,47 +40,12 @@ const columns = [
 const data = [
     {
         key: '1',
-        name: 'Arıza',
-        number: '3',
-        time: '139417',
-        amount: '5674'
-    },
-    {
-        key: '2',
-        name: 'Arızalı parça onarımı',
-        number: '3',
-        time: '9949',
-    },
-    {
-        key: '3',
-        name: 'Bakım',
-        number: '3',
-        time: '581',
-    },
-    {
-        key: '4',
-        name: 'Eğitimç toplantı ve seminer',
-        number: '3',
-        time: '203',
-    },
-    {
-        key: '5',
-        name: 'Periyodik bakım',
-        number: '3',
-        time: '4305',
-    },
-    {
-        key: '6',
-        name: 'İş talebi',
-        number: '3',
-        time: '2043',
-    },
-    {
-        key: '7',
-        name: 'Kullanıcılara verilen destek',
-        number: '3',
-        time: '93',
-    },
+        IS_EMRI_TIPI: 'Arıza',
+        IS_EMRI_SAYISI: '3',
+        TOPLAM_CALISMA_SURESI: '139417',
+        ORTALAMA_CALISMA_SURESI: '139417/3',
+        TOPLAM_MALIYET: '5674'
+    }
 ];
 
 const TableFooter = () => {
@@ -111,7 +76,7 @@ const IsEmriOzetTablo = () => {
                 bordered
                 footer={() => <TableFooter sum={data} />}
                 scroll={{
-                    x: 1500,
+                    x: 1000,
                 }}
             />
         </div>

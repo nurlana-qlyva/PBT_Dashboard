@@ -4,27 +4,21 @@ import { Ayarlar } from '../components/Ayarlar';
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        width: 40,
+        title: 'Lokasyon',
+        dataIndex: 'LOKASYON',
+        width: 260,
         ellipsis: true,
     },
     {
-        title: 'Due',
-        dataIndex: 'due',
-        width: 100,
+        title: 'Toplam İş Talebi',
+        dataIndex: 'TOPLAM_IS_TALEBI',
+        // width: 100,
         ellipsis: true
     },
     {
-        title: 'Location',
-        dataIndex: 'location',
-        width: 100,
-        ellipsis: true
-    },
-    {
-        title: '',
-        dataIndex: 'order',
-        width: 100,
+        title: 'Toplam İş Emri',
+        dataIndex: 'TOPLAM_IS_EMRI',
+        // width: 100,
         ellipsis: true
     },
 ];
@@ -33,10 +27,9 @@ const data = [];
 for (let i = 0; i < 46; i++) {
     data.push({
         key: i,
-        name: `Edward King ${i}`,
-        due: '2 tasks',
-        location: `Main Location ${i}`,
-        order: `Issue Work Order ${i}`,
+        LOKASYON: `Edward King ${i}`,
+        TOPLAM_IS_TALEBI: 456,
+        TOPLAM_IS_EMRI: 56,
     });
 }
 
@@ -83,7 +76,7 @@ const LokasyonDagilimTable = () => {
                 dataSource={data}
                 pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
                 scroll={{
-                    x: 1500,
+                    x: 600,
                 }}
             />
         </div>

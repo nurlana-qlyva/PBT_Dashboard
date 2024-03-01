@@ -14,8 +14,8 @@ const StyledButton = styled(Button)`
 
 const contentDate = (
     <>
-        <DayDatePicker />
-        <MonthDatePicker />
+        {/* <DayDatePicker /> */}
+        {/* <MonthDatePicker /> */}
         <YearDatePicker />
     </>
 )

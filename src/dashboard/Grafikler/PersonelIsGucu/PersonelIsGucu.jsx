@@ -1,13 +1,13 @@
 import { Column } from '@ant-design/plots';
 import { Ayarlar } from './components/Ayarlar';
-import { useYear } from './YearContext';
+import { useDate } from './DateContext';
 import { Spin } from 'antd';
 import useFetch from '../../../hooks/useFetch';
 
 const PersonelIsGucu = () => {
-    const { selectedYear } = useYear();
-    const [data, isLoading] = useFetch(`GetPersonelBazindaHarcananGuc?startDate=${selectedYear[0]}&endDate=${selectedYear[1]}`, [selectedYear]);
-
+    const { selectedDate } = useDate();
+    const [data, isLoading] = useFetch(`GetPersonelBazindaHarcananGuc?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
+    
     let formattedData = [];
 
     if (data) {
@@ -21,17 +21,9 @@ const PersonelIsGucu = () => {
         data: formattedData,
         xField: 'ISIM',
         yField: 'Dakika',
-        style: {
-            fill: ({ type }) => {
-                if (type === '10-30分' || type === '30+分') {
-                    return '#22CBCC';
-                }
-                return '#2989FF';
-            },
-        },
         label: {
             text: (originData) => {
-                const val = parseFloat(originData.value);
+                const val = parseFloat(originData.ISIM);
                 if (val < 0.05) {
                     return (val * 100).toFixed(1) + '%';
                 }

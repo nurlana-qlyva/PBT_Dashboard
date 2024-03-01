@@ -4,41 +4,36 @@ import { Ayarlar } from '../components/Ayarlar';
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        width: 40,
+        title: 'Makine Kodu',
+        dataIndex: 'MAKINE_KODU',
+        // width: 40,
         ellipsis: true,
     },
     {
-        title: 'Due',
-        dataIndex: 'due',
-        width: 120,
+        title: 'Makine Tanımı',
+        dataIndex: 'MAKINE_TANIMI',
+        // width: 120,
         ellipsis: true,
     },
     {
-        title: 'Location',
-        dataIndex: 'location',
-        width: 120,
+        title: 'Makine Tipi',
+        dataIndex: 'MAKINE_TIPI',
+        // width: 120,
         ellipsis: true,
     },
     {
-        title: '',
-        dataIndex: 'order',
-        width: 120,
+        title: 'Lokasyon',
+        dataIndex: 'LOKASYON',
+        // width: 120,
+        ellipsis: true,
+    },
+    {
+        title: 'İş Emri Sayısı',
+        dataIndex: 'IS_EMRI_SAYISI',
+        // width: 120,
         ellipsis: true,
     },
 ];
-
-const data = [];
-for (let i = 0; i < 46; i++) {
-    data.push({
-        key: i,
-        name: `Edward King ${i}`,
-        due: '2 tasks',
-        location: `Main Location ${i}`,
-        order: `Issue Work Order ${i}`,
-    });
-}
 
 const ArizaliMakinelerTablo = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -65,17 +60,17 @@ const ArizaliMakinelerTablo = () => {
                 <Ayarlar chart={<Table
                     rowSelection={rowSelection}
                     columns={columns}
-                    dataSource={data}
+                    // dataSource={data}
                     pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
                 />} />
             </div>
             <Table
                 rowSelection={rowSelection}
                 columns={columns}
-                dataSource={data}
+                // dataSource={data}
                 pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
                 scroll={{
-                    x: 1500,
+                    x: 1000,
                 }}
             />
         </div>

@@ -3,7 +3,7 @@ import { Column } from '@ant-design/plots';
 import { Spin } from 'antd';
 import useFetch from '../../../hooks/useFetch';
 import { Ayarlar } from './components/Ayarlar';
-import { useYear } from './YearContext';
+import { useDate } from './DateContext';
 
 const convertMonthNumberToName = (monthNumber) => {
   if (!monthNumber || monthNumber < 1 || monthNumber > 12) return "";
@@ -14,8 +14,8 @@ const convertMonthNumberToName = (monthNumber) => {
 };
 
 const AylikBakimMaliyeti = () => {
-  const { selectedYear } = useYear();
-  const [data, isLoading] = useFetch(`GetAylikBakimIsEmriMaliyet?ID=2&year=${selectedYear}`, [selectedYear]);
+  const { selectedDate } = useDate();
+  const [data, isLoading] = useFetch(`GetAylikBakimIsEmriMaliyet?ID=2&year=${selectedDate}`, [selectedDate]);
 
   let formattedData = [];
 

@@ -1,11 +1,11 @@
 import { Line } from '@ant-design/plots';
 import { Ayarlar } from './components/Ayarlar';
-import { useYear } from './YearContext';
 import useFetch from '../../../hooks/useFetch';
+import { useDate } from './DateContext';
 
 const IsEmirlerininZamanDagilimi = () => {
-    const { selectedYear } = useYear();
-    const [data, isLoading] = useFetch(`GetIsEmirleriByTarih?startDate=${selectedYear[0]}&endDate=${selectedYear[1]}`, [selectedYear]);
+    const { selectedDate } = useDate();
+    const [data, isLoading] = useFetch(`GetIsEmirleriByTarih?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
 
     let formattedData = [];
 
