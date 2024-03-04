@@ -1,11 +1,12 @@
 import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
 import { useForm, Controller } from "react-hook-form";
-import { useDate } from '../DateContext';
+import { useDate } from '../../../../DateContext';
+
 
 const DatePickerComp = () => {
-    const { handleSubmit, control } = useForm()
-    const { setSelectedDate } = useDate();
+    const { control } = useForm()
+    const { selectedDate, setSelectedDate } = useDate();
 
     function getFirstAndLastDayOfMonth(dateString) {
         const [year, month] = dateString.split('-');
@@ -27,13 +28,14 @@ const DatePickerComp = () => {
 
     const onChange = (date, dateString) => {
         const { firstDay, lastDay } = getFirstAndLastDayOfMonth(dateString);
-        setSelectedDate([firstDay, lastDay]);
+        setSelectedDate({ ...selectedDate, personel_is_gucu_zaman: [firstDay, lastDay] })
+
     };
 
     return (
         <form>
             <Controller
-                name="date"
+                name="personel_is_gucu_zaman"
                 control={control}
                 defaultValue={null}
                 render={({ field }) => (

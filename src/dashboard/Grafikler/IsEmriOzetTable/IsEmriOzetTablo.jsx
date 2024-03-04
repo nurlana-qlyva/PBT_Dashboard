@@ -1,7 +1,7 @@
 import { Table, Spin } from 'antd';
 import { Ayarlar } from './components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
-import { useDate } from './DateContext';
+import { useDate } from '../../../DateContext';
 
 const columns = [
     {
@@ -53,7 +53,7 @@ const TableFooter = ({ sum }) => {
 
 const IsEmriOzetTablo = () => {
     const { selectedDate } = useDate();
-    const [data, isLoading] = useFetch(`GetIsEmriOzetTable?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
+    const [data, isLoading] = useFetch(`GetIsEmriOzetTable?startDate=${selectedDate?.is_emri_ozet_zaman[0]}&endDate=${selectedDate?.is_emri_ozet_zaman[1]}`, [selectedDate.is_emri_ozet_zaman]);
 
     let formattedData = [];
 

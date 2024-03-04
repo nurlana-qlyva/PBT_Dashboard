@@ -5,14 +5,14 @@ import { useForm, Controller } from "react-hook-form";
 const DatePickerComp = () => {
     const { handleSubmit, control } = useForm()
 
-    const onChange = (date, dateString) => {
-        console.log(date, dateString);
-    };
+    // const onChange = (date, dateString) => {
+    //     console.log(date, dateString);
+    // };
 
     return (
         <form>
             <Controller
-                name="date"
+                name="tamamlanmis_oranlar_zaman"
                 control={control}
                 defaultValue={null}
                 render={({ field }) => (
@@ -20,7 +20,7 @@ const DatePickerComp = () => {
                         {...field}
                         onChange={(date, dateString) => {
                             field.onChange(date);
-                            onChange(date, dateString);
+                            // onChange(date, dateString);
                         }}
                         picker="day"
                     />

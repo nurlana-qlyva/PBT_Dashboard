@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { Column } from '@ant-design/plots';
 import { Spin } from "antd";
+import { useFormContext } from "react-hook-form";
 import useFetch from '../../../hooks/useFetch';
 import { Ayarlar } from './components/Ayarlar';
-import { useDate } from './DateContext';
+import { useDate } from "../../../DateContext";
 
 const convertMonthNumberToName = (monthNumber) => {
     if (!monthNumber || monthNumber < 1 || monthNumber > 12) return "";
@@ -16,7 +17,8 @@ const convertMonthNumberToName = (monthNumber) => {
 
 const TamamlanmisOranlar = () => {
     const { selectedDate } = useDate();
-    const [data, isLoading] = useFetch(`GetTamamlanmisIsEmirleriIsTalepleri?ID=2&year=${selectedDate}`, [selectedDate]);
+
+    const [data, isLoading] = useFetch(`GetTamamlanmisIsEmirleriIsTalepleri?ID=2&year=${selectedDate.tamamlanmis_oranlar_zaman}`, [selectedDate.tamamlanmis_oranlar_zaman]);
 
     const formattedData = useMemo(() => {
         if (!data) return [];
@@ -47,6 +49,8 @@ const TamamlanmisOranlar = () => {
             active: { linkFill: 'rgba(0,0,0,0.25)', stroke: 'black', lineWidth: 0.5 },
             inactive: { opacity: 0.5 },
         },
+        // width: 1000, // Örnek bir genişlik değeri
+        // height: 1000, // Örnek bir yükseklik değeri
     }), [formattedData]);
 
     return (

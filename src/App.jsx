@@ -1,31 +1,28 @@
+import { useForm, FormProvider } from "react-hook-form";
 import { BaseLayout } from "./components/BaseLayout";
-import { AylikBakimMaliyetiDateProvider } from "./dashboard/Grafikler/AylikBakimMaliyeti/DateContext";
-import { IsEmirlerininZamanDagilimiYearProvider } from "./dashboard/Grafikler/IsEmirlerininZamanDagilimi/DateContext";
-import { IsEmriOzetTabloDateProvider } from "./dashboard/Grafikler/IsEmriOzetTable/DateContext";
-import { LokasyonDagilimDateProvider } from "./dashboard/Grafikler/LokasyonDagilimTable/DateContext";
-import { PersonelIsGucuDateProvider } from "./dashboard/Grafikler/PersonelIsGucu/DateContext";
-import { TamamlanmisIsOranlariDateProvider } from "./dashboard/Grafikler/TamamlanmisIsOranlari/DateContext";
-import { ToplamHarcanaIsGucuDateProvider } from "./dashboard/Grafikler/ToplamHarcananIsGucu/DateContext";
+import { DateProvider } from "./DateContext";
 
 function App() {
+  const method = useForm(
+    {
+      defaultValues: {
+        tamamlanmis_oranlar_zaman: "",
+        toplam_harcanan_is_gucu_yil: ["2023-01-01", "2023-01-01"]
+      }
+    }
+  )
+
+  const onSubmit = (data) => console.log(data)
 
   return (
-    <AylikBakimMaliyetiDateProvider>
-      <TamamlanmisIsOranlariDateProvider>
-        <IsEmirlerininZamanDagilimiYearProvider>
-          <PersonelIsGucuDateProvider>
-            <ToplamHarcanaIsGucuDateProvider>
-              
-              <IsEmriOzetTabloDateProvider>
-                <LokasyonDagilimDateProvider>
-                  <BaseLayout />
-                </LokasyonDagilimDateProvider>
-              </IsEmriOzetTabloDateProvider>
-            </ToplamHarcanaIsGucuDateProvider>
-          </PersonelIsGucuDateProvider>
-        </IsEmirlerininZamanDagilimiYearProvider>
-      </TamamlanmisIsOranlariDateProvider>
-    </AylikBakimMaliyetiDateProvider>
+    <FormProvider {...method}>
+      <DateProvider>
+          <form onSubmit={method.handleSubmit(onSubmit)}>
+            <BaseLayout />
+          </form>
+      </DateProvider>
+    </FormProvider>
+
   )
 }
 

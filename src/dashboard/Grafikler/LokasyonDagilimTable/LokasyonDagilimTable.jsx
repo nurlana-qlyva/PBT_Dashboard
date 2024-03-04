@@ -1,8 +1,8 @@
 import { Table, Spin } from 'antd';
 import { useMemo, useState } from 'react';
 import { Ayarlar } from './components/Ayarlar';
-import { useDate } from './DateContext';
 import useFetch from '../../../hooks/useFetch';
+import { useDate } from '../../../DateContext';
 
 const columns = [
     {
@@ -27,7 +27,9 @@ const columns = [
 
 const LokasyonDagilimTable = () => {
     const { selectedDate } = useDate();
-    const [data, isLoading] = useFetch(`GetLokasyonBazindaIsEmriTalebi?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
+
+    const [data, isLoading] = useFetch(`GetLokasyonBazindaIsEmriTalebi?startDate=${selectedDate.lokasyon_dagilimi_zaman[0]}&endDate=${selectedDate?.lokasyon_dagilimi_zaman[1]}`, [selectedDate?.lokasyon_dagilimi_zaman]);
+
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [pageSize, setPageSize] = useState(10);
 

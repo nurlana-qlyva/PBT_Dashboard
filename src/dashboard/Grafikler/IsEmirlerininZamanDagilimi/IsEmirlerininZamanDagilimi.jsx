@@ -2,11 +2,12 @@ import { Line } from '@ant-design/plots';
 import { Spin } from "antd";
 import { Ayarlar } from './components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
-import { useDate } from './DateContext';
+import { useDate } from '../../../DateContext';
 
 const IsEmirlerininZamanDagilimi = () => {
     const { selectedDate } = useDate();
-    const [data, isLoading] = useFetch(`GetIsEmirleriByTarih?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
+
+    const [data, isLoading] = useFetch(`GetIsEmirleriByTarih?startDate=${selectedDate?.is_emirlerinin_zaman_dagilimi[0]}&endDate=${selectedDate?.is_emirlerinin_zaman_dagilimi[1]}`, [selectedDate.is_emirlerinin_zaman_dagilimi]);
 
     let formattedData = [];
 

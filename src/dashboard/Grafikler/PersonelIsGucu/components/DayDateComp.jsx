@@ -1,23 +1,24 @@
 import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
 import { useForm, Controller } from "react-hook-form";
-import { useDate } from '../DateContext';
+import { useDate } from '../../../../DateContext';
 
-const {RangePicker} = DatePicker
+const { RangePicker } = DatePicker
 
 const DatePickerComp = () => {
-    const { handleSubmit, control } = useForm()
-    const { setSelectedDate } = useDate();
+    const { control } = useForm()
+    const { selectedDate, setSelectedDate } = useDate();
 
 
     const onChange = (date, dateString) => {
         setSelectedDate(dateString)
+        setSelectedDate({ ...selectedDate, personel_is_gucu_zaman: dateString })
     };
 
     return (
         <form>
             <Controller
-                name="date"
+                name="personel_is_gucu_zaman"
                 control={control}
                 defaultValue={null}
                 render={({ field }) => (

@@ -1,13 +1,13 @@
 import { Column } from '@ant-design/plots';
 import { Ayarlar } from './components/Ayarlar';
-import { useDate } from './DateContext';
 import { Spin } from 'antd';
 import useFetch from '../../../hooks/useFetch';
+import { useDate } from '../../../DateContext';
 
 const PersonelIsGucu = () => {
     const { selectedDate } = useDate();
-    const [data, isLoading] = useFetch(`GetPersonelBazindaHarcananGuc?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
-    
+    const [data, isLoading] = useFetch(`GetPersonelBazindaHarcananGuc?startDate=${selectedDate?.personel_is_gucu_zaman[0]}&endDate=${selectedDate?.personel_is_gucu_zaman[1]}`, [selectedDate.personel_is_gucu_zaman]);
+
     let formattedData = [];
 
     if (data) {

@@ -2,11 +2,11 @@ import { Pie } from '@ant-design/plots';
 import { Spin } from 'antd';
 import { Ayarlar } from './components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
-import { useDate } from './DateContext';
+import { useDate } from '../../../DateContext';
 
 const ToplamHarcananIsGucu = () => {
     const { selectedDate } = useDate();
-    const [data, isLoading] = useFetch(`GetToplamHarcananIsGuc?startDate=${selectedDate[0]}&endDate=${selectedDate[1]}`, [selectedDate]);
+    const [data, isLoading] = useFetch(`GetToplamHarcananIsGuc?startDate=${selectedDate?.toplam_harcanan_is_gucu_zaman[0]}&endDate=${selectedDate?.toplam_harcanan_is_gucu_zaman[1]}`, [selectedDate.toplam_harcanan_is_gucu_zaman]);
     
     let formattedData = [];
 

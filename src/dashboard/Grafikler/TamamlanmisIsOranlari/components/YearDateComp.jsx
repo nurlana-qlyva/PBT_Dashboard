@@ -1,40 +1,37 @@
 import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
-import { useForm, Controller } from "react-hook-form";
-import { useDate } from '../DateContext';
+import { useFormContext, Controller } from "react-hook-form";
+import { useDate } from '../../../../DateContext';
 
 const DatePickerComp = () => {
-    const { handleSubmit, control } = useForm()
-    const { setSelectedDate} = useDate();
+    const { control } = useFormContext()
+    const { selectedDate, setSelectedDate } = useDate()
 
     const onChange = (date, dateString) => {
-        setSelectedDate(dateString);
+        setSelectedDate({...selectedDate, tamamlanmis_oranlar_zaman: dateString})
     };
 
     return (
-        <form>
-            <Controller
-                name="date"
-                control={control}
-                defaultValue={null}
-                render={({ field }) => (
-                    <DatePicker
-                        {...field}
-                        onChange={(date, dateString) => {
-                            field.onChange(date);
-                            onChange(date, dateString);
-                        }}
-                        picker="year"
-                    />
-                )}
-            />
-        </form>
+        <Controller
+            name="tamamlanmis_oranlar_zaman"
+            control={control}
+            render={({ field }) => (
+                <DatePicker
+                    {...field}
+                    onChange={(date, dateString) => {
+                        field.onChange(date);
+                        onChange(date, dateString);
+                    }}
+                    picker="year"
+                />
+            )}
+        />
 
     )
 }
 
 const YearDatePicker = () => {
-    
+
     return <ConfigProvider
         button={{
             style: { border: 'none' },

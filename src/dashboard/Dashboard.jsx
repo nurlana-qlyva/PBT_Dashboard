@@ -20,7 +20,7 @@ import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import IsEmirlerininZamanDagilimi from "./Grafikler/IsEmirlerininZamanDagilimi/IsEmirlerininZamanDagilimi";
 
-const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'İş Emri Durumu Grafiği', 'İş Talebi Durumu Grafiği', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Toplam Harcanan İş Gücü', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Makine Tiplerine Göre Envanter Dağılımı'];
+const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Toplam Harcanan İş Gücü', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Makine Tiplerine Göre Envanter Dağılımı'];
 
 const components = [
   {
@@ -53,16 +53,16 @@ const components = [
     key: 'Personel Bazında Harcanan İş Gücü',
     component: <PersonelIsGucu />
   },
-  {
-    id: 7,
-    key: 'İş Emri Durumu Grafiği',
-    component: <IsEmriDurumEnvanter />
-  },
-  {
-    id: 8,
-    key: 'İş Talebi Durumu Grafiği',
-    component: <IsTalepDurumEnvanter />
-  },
+  // {
+  //   id: 7,
+  //   key: 'İş Emri Durumu Grafiği',
+  //   component: <IsEmriDurumEnvanter />
+  // },
+  // {
+  //   id: 8,
+  //   key: 'İş Talebi Durumu Grafiği',
+  //   component: <IsTalepDurumEnvanter />
+  // },
   {
     id: 9,
     key: 'Toplam Harcanan İş Gücü',
