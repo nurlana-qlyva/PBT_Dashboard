@@ -6,7 +6,7 @@ import { Ayarlar } from '../components/Ayarlar';
 const IsTalepTipEnvanter = () => {
   const [data, isLoading] = useFetch("GetIsTalepTipEnvanter?ID=2")
 
-  // const total = data.reduce((acc, entry) => acc + entry.TALEP_SAYISI, 0);
+  const total = data.reduce((acc, entry) => acc + entry.TALEP_SAYISI, 0);
 
   let formattedData = [];
 
@@ -24,11 +24,17 @@ const IsTalepTipEnvanter = () => {
     colorField: 'İş talebi tipi',
     radius: .8,
     label: {
-      text: (d) => `${d.TALEP_TIPI}\n ${d.TALEP_SAYISI}`,
-      position: 'spider',
+      text: (d) => `${(d.TALEP_SAYISI * 100 / total).toFixed(1)}%`,
+      position: 'outside',
       labelHeight: 10,
     },
-    legend: false
+    legend: {
+      color: {
+        title: false,
+        position: 'top',
+        rowPadding: 5,
+      },
+    },
   };
 
   const modalConfig = { ...config, radius: .969 }

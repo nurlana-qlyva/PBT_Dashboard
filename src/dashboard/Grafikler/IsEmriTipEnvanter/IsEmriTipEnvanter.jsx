@@ -6,7 +6,7 @@ import { Ayarlar } from '../components/Ayarlar';
 const IsEmriTipEnvanter = () => {
     const [data, isLoading] = useFetch("GetIsEmriTipEnvanter?ID=2")
 
-    // const total = data.reduce((acc, entry) => acc + entry.ISEMRI_SAYISI, 0);
+    const total = data.reduce((acc, entry) => acc + entry.ISEMRI_SAYISI, 0);
 
     let formattedData = [];
 
@@ -24,10 +24,16 @@ const IsEmriTipEnvanter = () => {
         colorField: "İş emri tipi",
         radius: .8,
         label: {
-            text: (d) => `${d.ISEMRI_TIPI}\n ${d.ISEMRI_SAYISI}`,
-            position: 'spider',
+            text: (d) => `${(d.ISEMRI_SAYISI * 100 / total).toFixed(1)}%`,
+            position: 'outside',
         },
-        legend: false
+        legend: {
+            color: {
+                title: false,
+                position: 'top',
+                rowPadding: 5,
+            },
+        },
     };
 
     const modalConfig = { ...config, radius: .99 }
