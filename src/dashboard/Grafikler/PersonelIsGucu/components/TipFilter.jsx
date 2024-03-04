@@ -1,43 +1,45 @@
-
 import { Button, Popover, Divider, Checkbox } from 'antd';
 import { useState } from 'react';
 import styled from "styled-components";
+import { usePersonel } from '../PersonelContext';
 
 const StyledButton = styled(Button)`
-        border: none !important;
-        box-shadow: none !important;
+    border: none !important;
+    box-shadow: none !important;
 `;
 
 const CheckboxGroup = Checkbox.Group;
 
 const TipFilter = () => {
-    const [checkedList, setCheckedList] = useState([]);
+    const { personels, setPersonels } = usePersonel();
+    const [checkedList, setCheckedList] = useState(personels);
+    const [allPersonels, setAllPersonels] = useState(personels)
 
-    // const onChange = (checkedValues) => {
-    //     setCheckedList(checkedValues);
-    //     onUpdateFilters(checkedValues); // Send checked values to parent component
-    // };
+    const onChange = (checkedValues) => {
+        setCheckedList(checkedValues);
+        setPersonels(checkedValues);
+    };
 
-    // const onCheckAllChange = (e) => {
-    //     setCheckedList(e.target.checked ? plainOptions : []);
-    //     onUpdateFilters(e.target.checked ? plainOptions : []); // Send all values if "Tümü" checked
-    // };
+    const onCheckAllChange = (e) => {
+        setCheckedList(e.target.checked ? allPersonels : []);
+        setPersonels(e.target.checked ? allPersonels : []); 
+    };
 
-    // const content = (
-    //     <div className='filter'>
-    //         <Checkbox indeterminate={checkedList.length > 0 && checkedList.length < plainOptions.length} onChange={onCheckAllChange} checked={checkedList.length === plainOptions.length}>
-    //             Tümü
-    //         </Checkbox>
-    //         <Divider />
-    //         <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} style={{ display: 'flex', flexDirection: 'column' }} />
-    //     </div>
-    // );
+    const content = (
+        <div className='filter'>
+            <Checkbox indeterminate={checkedList.length > 0 && checkedList.length < allPersonels.length} onChange={onCheckAllChange} checked={checkedList.length === allPersonels.length}>
+                Tümü
+            </Checkbox>
+            <Divider />
+            <CheckboxGroup options={allPersonels} value={checkedList} onChange={onChange} style={{ display: 'flex', flexDirection: 'column' }} />
+        </div>
+    );
 
     return (
-        <Popover placement="rightTop" content={''} style={{ border: 0 }}>
+        <Popover placement="rightTop" content={content} style={{ border: 0 }}>
             <StyledButton>Personeli düzenle</StyledButton>
         </Popover>
-    )
-}
+    );
+};
 
-export default TipFilter
+export default TipFilter;

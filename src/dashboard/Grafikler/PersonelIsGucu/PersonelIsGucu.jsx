@@ -12,19 +12,21 @@ const PersonelIsGucu = () => {
     const [data, isLoading] = useFetch(`GetPersonelBazindaHarcananGuc?startDate=${selectedDate?.personel_is_gucu_zaman[0]}&endDate=${selectedDate?.personel_is_gucu_zaman[1]}`, [selectedDate.personel_is_gucu_zaman]);
 
     useEffect(() => {
-        const personelData = []
-        data.map(item => personelData.push(item.ISIM))
-        setPersonels(personelData)
-    }, [])
-
-    console.log(personels)
-
-
+        if (data) {
+            const updatedPersonels = [...personels];
+            data.forEach(item => {
+                if (!updatedPersonels.includes(item.ISIM)) {
+                    updatedPersonels.push(item.ISIM); 
+                }
+            });
+            setPersonels(updatedPersonels); 
+        }
+    }, [data]);
 
     let formattedData = [];
 
     if (data) {
-        formattedData = data.map(item => ({
+        formattedData = data.filter(item => personels.includes(item.ISIM)).map(item => ({
             ...item,
             Dakika: item.DAKIKA
         }));
