@@ -1,12 +1,25 @@
+import { useEffect } from "react"
 import { Column } from '@ant-design/plots';
 import { Ayarlar } from './components/Ayarlar';
 import { Spin } from 'antd';
 import useFetch from '../../../hooks/useFetch';
 import { useDate } from '../../../DateContext';
+import { usePersonel } from './PersonelContext';
 
 const PersonelIsGucu = () => {
     const { selectedDate } = useDate();
+    const { personels, setPersonels } = usePersonel()
     const [data, isLoading] = useFetch(`GetPersonelBazindaHarcananGuc?startDate=${selectedDate?.personel_is_gucu_zaman[0]}&endDate=${selectedDate?.personel_is_gucu_zaman[1]}`, [selectedDate.personel_is_gucu_zaman]);
+
+    useEffect(() => {
+        const personelData = []
+        data.map(item => personelData.push(item.ISIM))
+        setPersonels(personelData)
+    }, [])
+
+    console.log(personels)
+
+
 
     let formattedData = [];
 

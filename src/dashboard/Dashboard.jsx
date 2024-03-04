@@ -26,17 +26,26 @@ const components = [
   {
     id: 1,
     key: 'İş Emri Tipi Grafiği',
-    component: <IsEmriTipEnvanter />
+    component: <IsEmriTipEnvanter />,
+    location: {
+      w: 4, h: 4, x: (0 % 3) * 4, y: Math.floor(0 / 3) * 4
+    }
   },
   {
     id: 2,
     key: 'İş Talebi Tipi Grafiği',
-    component: <IsTalepTipEnvanter />
+    component: <IsTalepTipEnvanter />,
+    location: {
+      w: 4, h: 4, x: (1 % 3) * 4, y: Math.floor(1 / 3) * 4
+    }
   },
   {
     id: 3,
     key: 'Tamamlanmış İş talepleri ve İş Emirleri Oranları',
-    component: <TamamlanmisOranlar />
+    component: <TamamlanmisOranlar />,
+    location: {
+      w: 4, h: 4, x: (2 % 3) * 4, y: Math.floor(2 / 3) * 4
+    }
   },
   // {
   //   id: 4,
@@ -46,17 +55,24 @@ const components = [
   {
     id: 5,
     key: 'Aylık Bakım Maliyetleri',
-    component: <AylikBakimMaliyeti />
+    component: <AylikBakimMaliyeti />,
+    location: {
+      w: 4, h: 4, x: (3 % 3) * 4, y: Math.floor(3 / 3) * 4
+    }
   },
   {
     id: 6,
     key: 'Personel Bazında Harcanan İş Gücü',
-    component: <PersonelIsGucu />
+    component: <PersonelIsGucu />,
+    location: {
+      w: 4, h: 4, x: (4 % 3) * 4, y: Math.floor(4 / 3) * 4
+    }
   },
   // {
   //   id: 7,
   //   key: 'İş Emri Durumu Grafiği',
-  //   component: <IsEmriDurumEnvanter />
+  //   component: <IsEmriDurumEnvanter />,
+
   // },
   // {
   //   id: 8,
@@ -66,32 +82,50 @@ const components = [
   {
     id: 9,
     key: 'Toplam Harcanan İş Gücü',
-    component: <ToplamHarcananIsGucu />
+    component: <ToplamHarcananIsGucu />,
+    location: {
+      w: 4, h: 4, x: (5 % 3) * 4, y: Math.floor(5 / 3) * 4
+    }
   },
   {
     id: 10,
     key: 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı',
-    component: <IsEmirlerininZamanDagilimi />
+    component: <IsEmirlerininZamanDagilimi />,
+    location: {
+      w: 4, h: 4, x: (6 % 3) * 4, y: Math.floor(6 / 3) * 4
+    }
   },
   {
     id: 11,
     key: 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı',
-    component: <LokasyonDagilimTable />
+    component: <LokasyonDagilimTable />,
+    location: {
+      w: 4, h: 4, x: (7 % 3) * 4, y: Math.floor(7 / 3) * 4
+    }
   },
   {
     id: 12,
     key: 'Makine Tiplerine Göre Envanter Dağılımı',
-    component: <MakineTipEnvanter />
+    component: <MakineTipEnvanter />,
+    location: {
+      w: 4, h: 4, x: (8 % 3) * 4, y: Math.floor(8 / 3) * 4
+    }
   },
   {
     id: 13,
     key: 'İş Emirleri Özet Tablosu',
-    component: <IsEmriOzetTablo />
+    component: <IsEmriOzetTablo />,
+    location: {
+      w: 4, h: 4, x: (9 % 3) * 4, y: Math.floor(9 / 3) * 4
+    }
   },
   {
     id: 14,
     key: 'Arızalı Makineler',
-    component: <ArizaliMakinelerTablo />
+    component: <ArizaliMakinelerTablo />,
+    location: {
+      w: 4, h: 4, x: (10 % 3) * 4, y: Math.floor(10 / 3) * 4
+    }
   }
 ];
 
@@ -103,8 +137,6 @@ const Dashboard = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [componentLayout, setComponentLayout] = useState([]);
-  const [localStorageKey, setLocalStorageKey] = useState("dashboard-layout");
-
 
   useEffect(() => {
     const container = document.getElementById('chart-container');
@@ -122,32 +154,31 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    const savedLayout = localStorage.getItem(localStorageKey);
+    // Load layout from local storage on component mount
+    const savedLayout = localStorage.getItem('componentLayout');
     if (savedLayout) {
       setComponentLayout(JSON.parse(savedLayout));
+    } else {
+      // If layout data is not found in local storage, generate initial layout
+      const initialLayout = memoizedFilteredGraphs.map((graphKey, index) => ({
+        i: graphKey,
+        x: (index % 3) * 4,
+        y: Math.floor(index / 3) * 4,
+        w: 4,
+        h: 4,
+      }));
+      setComponentLayout(initialLayout);
     }
-  }, [localStorageKey]);
-
-  useEffect(() => {
-    if (componentLayout.length > 0) {
-      localStorage.setItem(localStorageKey, JSON.stringify(componentLayout));
-    }
-  }, [componentLayout, localStorageKey]);
-
-  useEffect(() => {
-    const savedLayout = localStorage.getItem(localStorageKey);
-    if (savedLayout) {
-      setComponentLayout(JSON.parse(savedLayout));
-    }
-  }, [localStorageKey]);
+  }, []);
 
   const updateFilters = (selectedGraphs) => {
     setFilteredGraphs(selectedGraphs);
   };
 
   const handleLayoutChange = (layout) => {
+    // Save layout to local storage whenever it changes
+    localStorage.setItem('componentLayout', JSON.stringify(layout));
     setComponentLayout(layout);
-    localStorage.setItem(localStorageKey, JSON.stringify(layout));
   };
 
   const memoizedFilteredGraphs = useMemo(() => filteredGraphs, [filteredGraphs]);
@@ -167,7 +198,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Filter style={{ padding: mobileView ? "24px 0px" : 24 }} onUpdateFilters={updateFilters} />
+      <Filter style={{ padding: mobileView ? "24px 0px" : 24 }} onUpdateFilters={updateFilters} memoizedFilteredGraphs={memoizedFilteredGraphs} setComponentLayout={setComponentLayout} />
       <div id="chart-container" style={{ padding: mobileView ? "24px 0px" : 24 }}>
         <DashboardStatisticCards />
         <ResponsiveGridLayout
@@ -180,11 +211,17 @@ const Dashboard = () => {
           onLayoutChange={handleLayoutChange} // Add this line to handle layout change
           layout={componentLayout} // Pass layout state to set initial layout
         >
-          {memoizedFilteredGraphs.map((graphKey, index) => (
-            <div key={graphKey} className="chart resizable-graph" data-grid={{ w: 4, h: 4, x: (index % 3) * 4, y: Math.floor(index / 3) * 4 }} onClick={handleClick}>
-              {React.cloneElement(components.find(component => component.key === graphKey).component, { containerSize })}
-            </div>
-          ))}
+          {memoizedFilteredGraphs.map((graphKey, index) => {
+            const itemLayout = componentLayout.find(item => item.i === graphKey);
+            if (!itemLayout) return null; // Skip rendering if layout data is missing
+            const { w, h, x, y } = itemLayout;
+            return (
+              <div key={graphKey} className="chart resizable-graph" data-grid={{ w, h, x, y }} onClick={handleClick}>
+                {React.cloneElement(components.find(component => component.key === graphKey).component, { containerSize })}
+              </div>
+            )
+
+          })}
         </ResponsiveGridLayout>
       </div>
     </>

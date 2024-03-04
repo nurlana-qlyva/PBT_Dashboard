@@ -14,7 +14,7 @@ const IsEmriTipEnvanter = () => {
         formattedData = data.map(item => ({
             ...item,
             "İş emri sayısı": item.ISEMRI_SAYISI,
-            "İş emri tipi": item.ISEMRI_TIPI
+            "İş emri tipi": item.ISEMRI_TIPI.slice(0, 15) + '...'
         }));
     }
 
@@ -34,6 +34,7 @@ const IsEmriTipEnvanter = () => {
                 rowPadding: 5,
             },
         },
+        paddingRight: 80,
     };
 
     const modalConfig = { ...config, radius: .99 }

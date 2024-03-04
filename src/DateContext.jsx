@@ -14,8 +14,6 @@ export const DateProvider = ({ children }) => {
     aylik_bakim_maliyeti: "2023",
   });
 
-  console.log(selectedDate)
-
   return (
     <DateContext.Provider value={{ selectedDate, setSelectedDate }}>
       {children}

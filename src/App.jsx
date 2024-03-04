@@ -1,6 +1,7 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { BaseLayout } from "./components/BaseLayout";
 import { DateProvider } from "./DateContext";
+import { PersonelProvider } from "./dashboard/Grafikler/PersonelIsGucu/PersonelContext";
 
 function App() {
   const method = useForm(
@@ -17,9 +18,11 @@ function App() {
   return (
     <FormProvider {...method}>
       <DateProvider>
+        <PersonelProvider>
           <form onSubmit={method.handleSubmit(onSubmit)}>
             <BaseLayout />
           </form>
+        </PersonelProvider>
       </DateProvider>
     </FormProvider>
 

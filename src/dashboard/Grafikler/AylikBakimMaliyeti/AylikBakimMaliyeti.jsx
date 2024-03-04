@@ -15,7 +15,6 @@ const convertMonthNumberToName = (monthNumber) => {
 
 const AylikBakimMaliyeti = () => {
   const { selectedDate } = useDate();
-  console.log(selectedDate)
   const [data, isLoading] = useFetch(`GetAylikBakimIsEmriMaliyet?ID=2&year=${selectedDate.aylik_bakim_maliyeti}`, [selectedDate.aylik_bakim_maliyeti]);
 
   const formattedData = useMemo(() => {

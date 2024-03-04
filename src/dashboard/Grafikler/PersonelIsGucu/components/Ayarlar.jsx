@@ -6,6 +6,7 @@ import MonthDatePicker from "./MonthDateComp";
 import styled from "styled-components";
 import DayDatePicker from './DayDateComp';
 import { ChartModal } from '../../components/Modal';
+import TipFilter from './TipFilter';
 
 const StyledButton = styled(Button)`
         border: none !important;
@@ -32,6 +33,7 @@ export const Ayarlar = ({ chart }) => {
             <Popover placement="rightTop" content={contentDate} style={{ border: 0 }}>
                 <StyledButton>Zamana göre seç</StyledButton>
             </Popover>
+            <TipFilter />
         </Space>
     )
 
