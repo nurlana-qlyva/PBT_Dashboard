@@ -26,7 +26,7 @@ const TipFilter = () => {
     };
 
     const content = (
-        <div className='filter'>
+        <div className='filter' style={{maxHeight: 400, overflow: 'auto'}}>
             <Checkbox indeterminate={checkedList.length > 0 && checkedList.length < allPersonels.length} onChange={onCheckAllChange} checked={checkedList.length === allPersonels.length}>
                 Tümü
             </Checkbox>
