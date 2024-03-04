@@ -2,22 +2,14 @@ import { useState } from 'react';
 import { Space, Button } from 'antd';
 import FilterGrafik from './components/FilterGrafik';
 
-export default function Filter({ onUpdateFilters, setComponentLayout }) {
+export default function Filter({ onUpdateFilters, setComponentLayout, memoizedFilteredGraphs }) {
   const [mobileView, setMobileView] = useState(window.innerWidth < 768);
 
   window.addEventListener("resize", () => {
     setMobileView(window.innerWidth < 768);
   });
 
-
-
-  // const filterProps = {
-  //   items,
-  //   // onClick: handleMenuClick,
-  // };
-
   const handleReset = () => {
-    localStorage.removeItem("componentLayout")
     const initialLayout = memoizedFilteredGraphs.map((graphKey, index) => ({
       i: graphKey,
       x: (index % 3) * 4,
@@ -26,6 +18,7 @@ export default function Filter({ onUpdateFilters, setComponentLayout }) {
       h: 4,
     }));
     setComponentLayout(initialLayout);
+    localStorage.setItem("componentLayout", initialLayout)
   }
 
   return (
