@@ -198,9 +198,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <Filter style={{ padding: mobileView ? "24px 0px" : 24 }} onUpdateFilters={updateFilters} memoizedFilteredGraphs={memoizedFilteredGraphs} setComponentLayout={setComponentLayout} />
       <div id="chart-container" style={{ padding: mobileView ? "24px 0px" : 24 }}>
         <DashboardStatisticCards />
+        <Filter onUpdateFilters={updateFilters} memoizedFilteredGraphs={memoizedFilteredGraphs} setComponentLayout={setComponentLayout} />
         <ResponsiveGridLayout
           className="layout"
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480 }}

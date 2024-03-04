@@ -1,5 +1,5 @@
 import { Button, Popover, Divider, Checkbox } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { usePersonel } from '../PersonelContext';
 
@@ -15,9 +15,17 @@ const TipFilter = () => {
     const [checkedList, setCheckedList] = useState(personels);
     const [allPersonels, setAllPersonels] = useState(personels)
 
+    useEffect(() => {
+        const savedPersonels = localStorage.getItem('personels');
+        if (savedPersonels) {
+            setCheckedList(JSON.parse(savedPersonels));
+        }
+    }, [])
+
     const onChange = (checkedValues) => {
         setCheckedList(checkedValues);
         setPersonels(checkedValues);
+        localStorage.setItem('personels', JSON.stringify(checkedValues));
     };
 
     const onCheckAllChange = (e) => {
@@ -26,7 +34,7 @@ const TipFilter = () => {
     };
 
     const content = (
-        <div className='filter' style={{maxHeight: 400, overflow: 'auto'}}>
+        <div className='personel' style={{maxHeight: 400, overflow: 'auto'}}>
             <Checkbox indeterminate={checkedList.length > 0 && checkedList.length < allPersonels.length} onChange={onCheckAllChange} checked={checkedList.length === allPersonels.length}>
                 Tümü
             </Checkbox>

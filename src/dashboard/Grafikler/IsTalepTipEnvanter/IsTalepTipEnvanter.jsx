@@ -22,7 +22,7 @@ const IsTalepTipEnvanter = () => {
     data: formattedData,
     angleField: 'İş talebi sayısı',
     colorField: 'İş talebi tipi',
-    radius: .8,
+    radius: .6,
     label: {
       text: (d) => `${(d.TALEP_SAYISI * 100 / total).toFixed(1)}%`,
       position: 'outside',

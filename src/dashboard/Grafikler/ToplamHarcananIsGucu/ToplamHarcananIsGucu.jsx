@@ -23,12 +23,22 @@ const ToplamHarcananIsGucu = () => {
         data: formattedData,
         angleField: 'Dakika',
         colorField: 'TANIM',
-        radius: .8,
+        radius: .6,
         label: {
-            text: (d) => `${d.TANIM}\n${d.Dakika}`,
-            position: 'spider',
+            text: (d) => `${(d.Dakika)}`,
+            position: 'outside',
+            style: {
+                fontSize: 10 // adjust the font size as needed
+            },
+            line: {},
         },
-        legend: false
+        legend: {
+            color: {
+              title: false,
+              position: 'top',
+              rowPadding: 5,
+            },
+          },
     };
 
     const modalConfig = { ...config, radius: .97 }

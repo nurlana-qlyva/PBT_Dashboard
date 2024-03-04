@@ -56,7 +56,7 @@ const ArizaliMakinelerTablo = () => {
 
 
     return (
-        <div style={{ width: '100%', height: '100%' }}>
+        <div style={{ width: '100%', height: '100%', overflow: "auto" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>Arızalı Makineler</h3>
                 <Ayarlar chart={<Table

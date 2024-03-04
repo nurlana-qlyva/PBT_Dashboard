@@ -22,7 +22,7 @@ export default function Filter({ onUpdateFilters, setComponentLayout, memoizedFi
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', padding: mobileView ? "0" : '0px 24px' }}>
+    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '10px', margin: '30px 0 10px' }}>
       <Space wrap>
         <Button onClick={handleReset}>Sıfırla</Button>
       </Space>

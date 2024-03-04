@@ -28,7 +28,7 @@ const columns = [
 ];
 
 const MakineTipEnvanter = () => {
-  const [pageSize, setPageSize] = useState(11);
+  const [pageSize, setPageSize] = useState(10);
   const [data, isLoading] = useFetch("GetMakineTipEnvanter?ID=2");
 
   const handlePageSizeChange = (current, size) => {
@@ -36,7 +36,7 @@ const MakineTipEnvanter = () => {
   };
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div style={{ height: '100%', width: '100%', overflow: "auto" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h3>Makine Tiplerine Göre Envanter Dağılımı</h3>
         <Ayarlar chart={<Table
