@@ -5,10 +5,6 @@ import DashboardStatisticCards from "./DashboardStatisticCards/DashboardStatisti
 import Filter from "./Fillter/Filter";
 import LokasyonDagilimTable from "./Grafikler/LokasyonDagilimTable/LokasyonDagilimTable";
 import IsEmriOzetTablo from "./Grafikler/IsEmriOzetTable/IsEmriOzetTablo";
-import IsTalepTipEnvanter from "./Grafikler/IsTalepTipEnvanter/IsTalepTipEnvanter";
-import IsEmriTipEnvanter from "./Grafikler/IsEmriTipEnvanter/IsEmriTipEnvanter";
-import IsEmriDurumEnvanter from "./Grafikler/IsEmriDurumEnvanter/IsEmriDurumEnvanter";
-import IsTalepDurumEnvanter from "./Grafikler/IsTalepDurumEnvanter/IsTalepDurumEnvanter";
 import PersonelIsGucu from "./Grafikler/PersonelIsGucu/PersonelIsGucu";
 import ArizaliMakinelerTablo from "./Grafikler/ArizaliMakineler/ArizaliMakineler";
 import AylikBakimMaliyeti from "./Grafikler/AylikBakimMaliyeti/AylikBakimMaliyeti";
@@ -19,6 +15,8 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import IsEmirlerininZamanDagilimi from "./Grafikler/IsEmirlerininZamanDagilimi/IsEmirlerininZamanDagilimi";
+import GrupIsEmir from "./Grafikler/emir_gruplama/GrupIsEmir";
+import GrupIsTaleb from "./Grafikler/taleb_gruplama/GrupTaleb";
 
 const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Toplam Harcanan İş Gücü', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Makine Tiplerine Göre Envanter Dağılımı'];
 
@@ -26,7 +24,7 @@ const components = [
   {
     id: 1,
     key: 'İş Emri Tipi Grafiği',
-    component: <IsEmriTipEnvanter />,
+    component: <GrupIsEmir />,
     location: {
       w: 4, h: 4, x: (0 % 3) * 4, y: Math.floor(0 / 3) * 4
     }
@@ -34,7 +32,7 @@ const components = [
   {
     id: 2,
     key: 'İş Talebi Tipi Grafiği',
-    component: <IsTalepTipEnvanter />,
+    component: <GrupIsTaleb />,
     location: {
       w: 4, h: 4, x: (1 % 3) * 4, y: Math.floor(1 / 3) * 4
     }
@@ -47,13 +45,8 @@ const components = [
       w: 4, h: 4, x: (2 % 3) * 4, y: Math.floor(2 / 3) * 4
     }
   },
-  // {
-  //   id: 4,
-  //   key: 'Periyodik Bakımlar Grafiği',
-  //   component: <BakimBarChart />
-  // },
   {
-    id: 5,
+    id: 4,
     key: 'Aylık Bakım Maliyetleri',
     component: <AylikBakimMaliyeti />,
     location: {
@@ -61,26 +54,15 @@ const components = [
     }
   },
   {
-    id: 6,
+    id: 5,
     key: 'Personel Bazında Harcanan İş Gücü',
     component: <PersonelIsGucu />,
     location: {
       w: 4, h: 4, x: (4 % 3) * 4, y: Math.floor(4 / 3) * 4
     }
   },
-  // {
-  //   id: 7,
-  //   key: 'İş Emri Durumu Grafiği',
-  //   component: <IsEmriDurumEnvanter />,
-
-  // },
-  // {
-  //   id: 8,
-  //   key: 'İş Talebi Durumu Grafiği',
-  //   component: <IsTalepDurumEnvanter />
-  // },
   {
-    id: 9,
+    id: 6,
     key: 'Toplam Harcanan İş Gücü',
     component: <ToplamHarcananIsGucu />,
     location: {
@@ -88,7 +70,7 @@ const components = [
     }
   },
   {
-    id: 10,
+    id: 7,
     key: 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı',
     component: <IsEmirlerininZamanDagilimi />,
     location: {
@@ -96,7 +78,7 @@ const components = [
     }
   },
   {
-    id: 11,
+    id: 8,
     key: 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı',
     component: <LokasyonDagilimTable />,
     location: {
@@ -104,7 +86,7 @@ const components = [
     }
   },
   {
-    id: 12,
+    id: 9,
     key: 'Makine Tiplerine Göre Envanter Dağılımı',
     component: <MakineTipEnvanter />,
     location: {
@@ -112,7 +94,7 @@ const components = [
     }
   },
   {
-    id: 13,
+    id: 10,
     key: 'İş Emirleri Özet Tablosu',
     component: <IsEmriOzetTablo />,
     location: {
@@ -120,7 +102,7 @@ const components = [
     }
   },
   {
-    id: 14,
+    id: 11,
     key: 'Arızalı Makineler',
     component: <ArizaliMakinelerTablo />,
     location: {

@@ -1,9 +1,9 @@
 import useFetch from '../../../hooks/useFetch'
 import { Pie } from '@ant-design/charts';
-import { Spin } from 'antd';
+import { Spin, Select } from 'antd';
 import { Ayarlar } from '../components/Ayarlar';
 
-const IsTalepTipEnvanter = () => {
+const IsTalepTip = ({ handleChange }) => {
   const [data, isLoading] = useFetch("GetIsTalepTipEnvanter?ID=2")
 
   const total = data.reduce((acc, entry) => acc + entry.TALEP_SAYISI, 0);
@@ -40,14 +40,38 @@ const IsTalepTipEnvanter = () => {
   const modalConfig = { ...config, radius: .969 }
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <h3>İş Talebi Tipi Grafiği</h3>
-        <Ayarlar chart={<Pie {...modalConfig} />} />
+        <div>
+          <Select
+            defaultValue="İş Talebi Tipi"
+            style={{
+              width: 130,
+              marginRight: 10
+            }}
+            onChange={handleChange}
+            options={[
+              {
+                value: 1,
+                label: 'İş Talebi Tipi',
+              },
+              {
+                value: 2,
+                label: 'İş Talebi Durumu',
+              },
+              {
+                value: 3,
+                label: 'Lokasyon',
+              }
+            ]}
+          />
+          <Ayarlar chart={<Pie {...modalConfig} />} />
+        </div>
       </div>
       {isLoading ? <Spin size="large" /> : <Pie {...config} />}
-    </div>
+    </>
   );
 }
 
-export default IsTalepTipEnvanter;
+export default IsTalepTip;
