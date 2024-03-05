@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { Space, Button } from 'antd';
 import FilterGrafik from './components/FilterGrafik';
 
+const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'Tamamlanmış İş talepleri ve İş Emirleri Oranları', 'Aylık Bakım Maliyetleri', 'Personel Bazında Harcanan İş Gücü', 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı', 'Toplam Harcanan İş Gücü', 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı', 'İş Emirleri Özet Tablosu', 'Arızalı Makineler', 'Makine Tiplerine Göre Envanter Dağılımı'];
+
 export default function Filter({ onUpdateFilters, setComponentLayout, memoizedFilteredGraphs }) {
   const [mobileView, setMobileView] = useState(window.innerWidth < 768);
+  const [checkedList, setCheckedList] = useState(plainOptions);
 
   window.addEventListener("resize", () => {
     setMobileView(window.innerWidth < 768);
@@ -20,6 +23,8 @@ export default function Filter({ onUpdateFilters, setComponentLayout, memoizedFi
     }));
     setComponentLayout(initialLayout);
     localStorage.setItem("componentLayout", JSON.stringify(initialLayout))
+    localStorage.setItem("filteredGraphs", JSON.stringify(plainOptions))
+    setCheckedList(plainOptions)
   }
 
   return (
@@ -29,7 +34,7 @@ export default function Filter({ onUpdateFilters, setComponentLayout, memoizedFi
       </Space>
 
       <Space>
-        <FilterGrafik onUpdateFilters={onUpdateFilters} />
+        <FilterGrafik onUpdateFilters={onUpdateFilters} checkedList={checkedList} setCheckedList={setCheckedList}/>
       </Space>
     </div>
   )
