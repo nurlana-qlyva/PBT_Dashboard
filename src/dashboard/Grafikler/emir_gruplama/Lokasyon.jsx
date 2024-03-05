@@ -7,7 +7,7 @@ const Lokasyon = ({ handleChange }) => {
                 <h3>Lokasyon Grafiği</h3>
                 <div>
                     <Select
-                        defaultValue="İş Emri Tipi"
+                        defaultValue="Lokasyon"
                         style={{
                             width: 130,
                             marginRight: 10

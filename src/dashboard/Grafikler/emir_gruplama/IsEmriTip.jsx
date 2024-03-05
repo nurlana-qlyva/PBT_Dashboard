@@ -22,7 +22,7 @@ const IsEmriTip = ({ handleChange }) => {
         data: formattedData,
         angleField: "İş emri sayısı",
         colorField: "İş emri tipi",
-        radius: .7,
+        radius: .6,
         label: {
             text: (d) => `${(d.ISEMRI_SAYISI * 100 / total).toFixed(1)}%`,
             position: 'outside',

@@ -6,7 +6,7 @@ import { Ayarlar } from '../components/Ayarlar';
 const IsEmriDurum = ({ handleChange }) => {
     const [data, isLoading] = useFetch("GetIsEmriDurumEnvanter?ID=2")
 
-    // const total = data.reduce((acc, entry) => acc + entry.ISEMRI_SAYISI, 0);
+    const total = data.reduce((acc, entry) => acc + entry.ISEMRI_SAYISI, 0);
 
     let formattedData = [];
 
@@ -22,12 +22,19 @@ const IsEmriDurum = ({ handleChange }) => {
         data: formattedData,
         angleField: 'İş emri sayısı',
         colorField: 'İş emri durumu',
-        radius: .8,
+        radius: .6,
         label: {
-            text: (d) => `${d.ISEMRI_DURUMU}\n ${d.ISEMRI_SAYISI}`,
+            text: (d) => `${(d.ISEMRI_SAYISI * 100 / total).toFixed(1)}%`,
             position: 'spider',
         },
-        legend: false
+        legend: {
+            color: {
+                title: false,
+                position: 'top',
+                rowPadding: 5,
+            },
+        },
+        paddingRight: 80,
     };
 
     const modalConfig = { ...config, radius: .96 }
@@ -38,7 +45,7 @@ const IsEmriDurum = ({ handleChange }) => {
                 <h3>İş Emri Durumu Grafiği</h3>
                 <div>
                     <Select
-                        defaultValue="İş Emri Tipi"
+                        defaultValue="İş Emri Durumu"
                         style={{
                             width: 130,
                             marginRight: 10

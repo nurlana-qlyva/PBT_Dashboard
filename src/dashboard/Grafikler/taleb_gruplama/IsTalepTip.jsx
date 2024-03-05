@@ -30,7 +30,7 @@ const IsTalepTip = ({ handleChange }) => {
     },
     legend: {
       color: {
-        title: false,
+        title: true,
         position: 'top',
         rowPadding: 5,
       },
