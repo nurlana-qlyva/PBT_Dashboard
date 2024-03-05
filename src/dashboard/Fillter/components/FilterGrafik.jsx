@@ -1,5 +1,5 @@
 import { Button, Popover } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Checkbox, Divider } from 'antd';
 import '../../dashboard.css'
 
@@ -9,6 +9,13 @@ const plainOptions = ['İş Emri Tipi Grafiği', 'İş Talebi Tipi Grafiği', 'T
 
 const FilterGrafik = ({ onUpdateFilters }) => {
     const [checkedList, setCheckedList] = useState(plainOptions);
+
+    useEffect(() => {
+        const savedGraphs = localStorage.getItem('filteredGraphs');
+        if(savedGraphs) {
+            setCheckedList(JSON.parse(savedGraphs))
+        }
+    }, [])
 
     const onChange = (checkedValues) => {
         setCheckedList(checkedValues);

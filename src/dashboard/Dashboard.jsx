@@ -153,11 +153,34 @@ const Dashboard = () => {
     };
   }, []);
 
+  const memoizedFilteredGraphs = useMemo(() => filteredGraphs, [filteredGraphs]);
+  
   useEffect(() => {
     // Load layout from local storage on component mount
     const savedLayout = localStorage.getItem('componentLayout');
+    const savedGraphs = JSON.parse(localStorage.getItem('filteredGraphs'));
+    setFilteredGraphs(savedGraphs)
     if (savedLayout) {
-      setComponentLayout(JSON.parse(savedLayout));
+      console.log(savedLayout)
+      const parsedLayout = JSON.parse(savedLayout)
+      const newLayout = filteredGraphs.map((graphKey, index) => {
+        const itemLayout = parsedLayout.find(item => item.i === graphKey);
+        if (itemLayout) {
+          return {
+            ...itemLayout,
+          };
+        } else {
+          return {
+            i: graphKey,
+            x: (index % 3) * 4,
+            y: Math.floor(index / 3) * 4,
+            w: 4,
+            h: 4,
+          };
+        }
+      });
+      setComponentLayout(newLayout);
+      localStorage.setItem('componentLayout', JSON.stringify(newLayout))
     } else {
       // If layout data is not found in local storage, generate initial layout
       const initialLayout = memoizedFilteredGraphs.map((graphKey, index) => ({
@@ -169,10 +192,13 @@ const Dashboard = () => {
       }));
       setComponentLayout(initialLayout);
     }
-  }, []);
+  }, [filteredGraphs]); // Add filteredGraphs to the dependency array
+  
 
   const updateFilters = (selectedGraphs) => {
     setFilteredGraphs(selectedGraphs);
+    // Save filtered graphs to local storage
+    localStorage.setItem('filteredGraphs', JSON.stringify(selectedGraphs));
   };
 
   const handleLayoutChange = (layout) => {
@@ -181,7 +207,6 @@ const Dashboard = () => {
     setComponentLayout(layout);
   };
 
-  const memoizedFilteredGraphs = useMemo(() => filteredGraphs, [filteredGraphs]);
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -212,7 +237,10 @@ const Dashboard = () => {
           layout={componentLayout} // Pass layout state to set initial layout
         >
           {memoizedFilteredGraphs.map((graphKey, index) => {
+            // console.log(componentLayout)
             const itemLayout = componentLayout.find(item => item.i === graphKey);
+            // console.log(componentLayout)
+            // console.log(memoizedFilteredGraphs)
             if (!itemLayout) return null; // Skip rendering if layout data is missing
             const { w, h, x, y } = itemLayout;
             return (

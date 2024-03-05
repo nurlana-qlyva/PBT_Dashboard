@@ -38,7 +38,7 @@ const columns = [
 
 const ArizaliMakinelerTablo = () => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(15);
     const [data, isLoading] = useFetch(`GetArizaliMakineler`);
 
     const onSelectChange = (newSelectedRowKeys) => {

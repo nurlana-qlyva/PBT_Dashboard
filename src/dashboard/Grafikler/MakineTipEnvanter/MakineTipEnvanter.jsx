@@ -28,7 +28,7 @@ const columns = [
 ];
 
 const MakineTipEnvanter = () => {
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(15);
   const [data, isLoading] = useFetch("GetMakineTipEnvanter?ID=2");
 
   const handlePageSizeChange = (current, size) => {

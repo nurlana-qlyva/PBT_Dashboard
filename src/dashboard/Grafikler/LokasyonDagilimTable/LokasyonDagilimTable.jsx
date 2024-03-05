@@ -31,7 +31,7 @@ const LokasyonDagilimTable = () => {
     const [data, isLoading] = useFetch(`GetLokasyonBazindaIsEmriTalebi?startDate=${selectedDate.lokasyon_dagilimi_zaman[0]}&endDate=${selectedDate?.lokasyon_dagilimi_zaman[1]}`, [selectedDate?.lokasyon_dagilimi_zaman]);
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(15);
 
     const formattedData = useMemo(() => {
         if (!data) return [];
@@ -61,7 +61,7 @@ const LokasyonDagilimTable = () => {
             <style>
                 {`
           .ant-table-cell {
-            padding: 8px 16px !important;
+            padding: 2px 16px !important;
           }
         `}
             </style>
