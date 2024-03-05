@@ -18,7 +18,7 @@ export default function Filter({ onUpdateFilters, setComponentLayout, memoizedFi
       h: 4,
     }));
     setComponentLayout(initialLayout);
-    localStorage.setItem("componentLayout", initialLayout)
+    localStorage.setItem("componentLayout", JSON.stringify(initialLayout))
   }
 
   return (
