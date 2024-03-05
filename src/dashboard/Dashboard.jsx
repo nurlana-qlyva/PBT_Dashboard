@@ -153,17 +153,25 @@ const Dashboard = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const savedGraphs = localStorage.getItem('filteredGraphs');
+
+    if (!savedGraphs) {
+      localStorage.setItem('filteredGraphs', JSON.stringify(filteredGraphs))
+    }
+  }, [])
+
   const memoizedFilteredGraphs = useMemo(() => filteredGraphs, [filteredGraphs]);
-  
+
   useEffect(() => {
     // Load layout from local storage on component mount
     const savedLayout = localStorage.getItem('componentLayout');
-    const savedGraphs = JSON.parse(localStorage.getItem('filteredGraphs'));
-    setFilteredGraphs(savedGraphs)
-    if (savedLayout) {
-      console.log(savedLayout)
+    const savedGraphs = localStorage.getItem('filteredGraphs');
+    setFilteredGraphs(JSON.parse(savedGraphs))
+
+    if (savedLayout && savedGraphs) {
       const parsedLayout = JSON.parse(savedLayout)
-      const newLayout = filteredGraphs.map((graphKey, index) => {
+      const newLayout = JSON.parse(savedGraphs).map((graphKey, index) => {
         const itemLayout = parsedLayout.find(item => item.i === graphKey);
         if (itemLayout) {
           return {
@@ -181,7 +189,8 @@ const Dashboard = () => {
       });
       setComponentLayout(newLayout);
       localStorage.setItem('componentLayout', JSON.stringify(newLayout))
-    } else {
+    }
+    else {
       // If layout data is not found in local storage, generate initial layout
       const initialLayout = memoizedFilteredGraphs.map((graphKey, index) => ({
         i: graphKey,
@@ -192,15 +201,37 @@ const Dashboard = () => {
       }));
       setComponentLayout(initialLayout);
     }
-  }, [filteredGraphs]); // Add filteredGraphs to the dependency array
-  
+  }, []); // Add filteredGraphs to the dependency array
+
 
   const updateFilters = (selectedGraphs) => {
-    setFilteredGraphs(selectedGraphs);
-    // Save filtered graphs to local storage
-    localStorage.setItem('filteredGraphs', JSON.stringify(selectedGraphs));
-  };
+      setFilteredGraphs(selectedGraphs);
+      // Save filtered graphs to local storage
+      localStorage.setItem('filteredGraphs', JSON.stringify(selectedGraphs));
 
+      const savedGraphs = JSON.parse(localStorage.getItem('filteredGraphs'));
+
+      const newLayout = savedGraphs.map((graphKey, index) => {
+        const itemLayout = componentLayout.find(item => item.i === graphKey);
+        if (itemLayout) {
+          return {
+            ...itemLayout,
+          };
+        } else {
+          return {
+            i: graphKey,
+            x: (index % 3) * 4,
+            y: Math.floor(index / 3) * 4,
+            w: 4,
+            h: 4,
+          };
+        }
+      });
+      localStorage.setItem('componentLayout', JSON.stringify(newLayout));
+      setComponentLayout(newLayout)
+
+  };
+  
   const handleLayoutChange = (layout) => {
     // Save layout to local storage whenever it changes
     localStorage.setItem('componentLayout', JSON.stringify(layout));
@@ -225,7 +256,7 @@ const Dashboard = () => {
     <>
       <div id="chart-container" style={{ padding: mobileView ? "24px 0px" : 24 }}>
         <DashboardStatisticCards />
-        <Filter onUpdateFilters={updateFilters} memoizedFilteredGraphs={memoizedFilteredGraphs} setComponentLayout={setComponentLayout} />
+        <Filter onUpdateFilters={updateFilters} memoizedFilteredGraphs={filteredGraphs} setComponentLayout={setComponentLayout} />
         <ResponsiveGridLayout
           className="layout"
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480 }}
@@ -237,10 +268,7 @@ const Dashboard = () => {
           layout={componentLayout} // Pass layout state to set initial layout
         >
           {memoizedFilteredGraphs.map((graphKey, index) => {
-            // console.log(componentLayout)
             const itemLayout = componentLayout.find(item => item.i === graphKey);
-            // console.log(componentLayout)
-            // console.log(memoizedFilteredGraphs)
             if (!itemLayout) return null; // Skip rendering if layout data is missing
             const { w, h, x, y } = itemLayout;
             return (

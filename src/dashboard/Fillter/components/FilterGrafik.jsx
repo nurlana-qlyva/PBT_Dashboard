@@ -20,11 +20,13 @@ const FilterGrafik = ({ onUpdateFilters }) => {
     const onChange = (checkedValues) => {
         setCheckedList(checkedValues);
         onUpdateFilters(checkedValues); // Send checked values to parent component
+        
     };
 
     const onCheckAllChange = (e) => {
         setCheckedList(e.target.checked ? plainOptions : []);
         onUpdateFilters(e.target.checked ? plainOptions : []); // Send all values if "Tümü" checked
+
     };
 
     const content = (

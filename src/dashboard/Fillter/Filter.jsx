@@ -9,6 +9,7 @@ export default function Filter({ onUpdateFilters, setComponentLayout, memoizedFi
     setMobileView(window.innerWidth < 768);
   });
 
+
   const handleReset = () => {
     const initialLayout = memoizedFilteredGraphs.map((graphKey, index) => ({
       i: graphKey,
