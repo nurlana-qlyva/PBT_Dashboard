@@ -11,14 +11,16 @@ const StyledButton = styled(Button)`
 const CheckboxGroup = Checkbox.Group;
 
 const TipFilter = () => {
-    const { personels, setPersonels } = usePersonel();
-    const [checkedList, setCheckedList] = useState(personels);
+    const { personels, setPersonels, checkedList, setCheckedList } = usePersonel();
     const [allPersonels, setAllPersonels] = useState(personels)
 
     useEffect(() => {
         const savedPersonels = localStorage.getItem('personels');
         if (savedPersonels) {
             setCheckedList(JSON.parse(savedPersonels));
+        } else {
+            setCheckedList(personels);
+            localStorage.setItem('personels', JSON.stringify(personels));
         }
     }, [])
 
@@ -29,9 +31,12 @@ const TipFilter = () => {
     };
 
     const onCheckAllChange = (e) => {
-        setCheckedList(e.target.checked ? allPersonels : []);
-        setPersonels(e.target.checked ? allPersonels : []); 
+        const allPersonelsChecked = e.target.checked ? allPersonels : [];
+        setCheckedList(allPersonelsChecked);
+        setPersonels(allPersonelsChecked);
+        localStorage.setItem('personels', JSON.stringify(allPersonelsChecked)); // Save to local storage
     };
+    
 
     const content = (
         <div className='personel' style={{maxHeight: 400, overflow: 'auto'}}>

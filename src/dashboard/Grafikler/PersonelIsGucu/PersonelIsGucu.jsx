@@ -8,25 +8,26 @@ import { usePersonel } from './PersonelContext';
 
 const PersonelIsGucu = () => {
     const { selectedDate } = useDate();
-    const { personels, setPersonels } = usePersonel()
+    const { personels, setPersonels, checkedList } = usePersonel()
     const [data, isLoading] = useFetch(`GetPersonelBazindaHarcananGuc?startDate=${selectedDate?.personel_is_gucu_zaman[0]}&endDate=${selectedDate?.personel_is_gucu_zaman[1]}`, [selectedDate.personel_is_gucu_zaman]);
 
     useEffect(() => {
-        if (data) {
+        if (personels.length === 0 && checkedList.length === 0 && data) {
             const updatedPersonels = [...personels];
             data.forEach(item => {
                 if (!updatedPersonels.includes(item.ISIM)) {
-                    updatedPersonels.push(item.ISIM); 
+                    updatedPersonels.push(item.ISIM);
                 }
             });
-            setPersonels(updatedPersonels); 
+            setPersonels(updatedPersonels);
         }
     }, [data]);
+
 
     let formattedData = [];
 
     if (data) {
-        formattedData = data.filter(item => personels.includes(item.ISIM)).map(item => ({
+        formattedData = data.filter(item => localStorage.getItem('personels') ? JSON.parse(localStorage.getItem('personels')).includes(item.ISIM) : personels.includes(item.ISIM)).map(item => ({
             ...item,
             Dakika: item.DAKIKA
         }));

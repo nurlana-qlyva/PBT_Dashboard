@@ -4,9 +4,10 @@ const PersonelContext = createContext()
 
 export const PersonelProvider = ({ children }) => {
     const [personels, setPersonels] = useState([])
+    const [checkedList, setCheckedList] = useState(personels);
 
     return (
-        <PersonelContext.Provider value={{ personels, setPersonels }}>
+        <PersonelContext.Provider value={{ personels, setPersonels, checkedList, setCheckedList }}>
             {children}
         </PersonelContext.Provider>
     )
