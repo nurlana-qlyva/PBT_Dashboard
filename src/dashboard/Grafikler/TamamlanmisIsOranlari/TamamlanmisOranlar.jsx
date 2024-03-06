@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { Column } from '@ant-design/plots';
 import { Spin } from "antd";
-import { useFormContext } from "react-hook-form";
 import useFetch from '../../../hooks/useFetch';
 import { Ayarlar } from './components/Ayarlar';
 import { useDate } from "../../../DateContext";
