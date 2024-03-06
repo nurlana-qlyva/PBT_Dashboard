@@ -22,27 +22,48 @@ const IsEmriDurum = ({ handleChange }) => {
         data: formattedData,
         angleField: 'İş emri sayısı',
         colorField: 'İş emri durumu',
-        radius: .6,
+        radius: .8,
         label: {
-            text: (d) => `${(d.ISEMRI_SAYISI * 100 / total).toFixed(1)}%`,
-            position: 'spider',
+            text: 'İş emri sayısı',
+            position: 'outside',
         },
+        // legend: {
+        //     color: {
+        //         title: false,
+        //         position: 'top',
+        //         rowPadding: 5,
+        //     },
+        // },
+        // paddingRight: 80,
+        innerRadius: 0.5,
         legend: {
             color: {
                 title: false,
                 position: 'top',
-                rowPadding: 5,
+                rowPadding: 1,
             },
         },
-        paddingRight: 80,
+        annotations: [
+            {
+                type: 'text',
+                style: {
+                    text: '',
+                    x: '50%',
+                    y: '50%',
+                    textAlign: 'center',
+                    fontSize: 40,
+                    fontStyle: 'bold',
+                },
+            },
+        ]
     };
 
-    const modalConfig = { ...config, radius: .96 }
+    const modalConfig = { ...config, radius: 1 }
 
     return (
         <>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>İş Emri Durumu Grafiği</h3>
+                <h3>İş Emri Durumları</h3>
                 <div>
                     <Select
                         defaultValue="İş Emri Durumu"

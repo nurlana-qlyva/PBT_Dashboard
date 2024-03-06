@@ -4,6 +4,8 @@ import { Ayarlar } from './components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
 import { useDate } from '../../../DateContext';
 
+
+
 const IsEmirlerininZamanDagilimi = () => {
     const { selectedDate } = useDate();
 
@@ -48,7 +50,6 @@ const IsEmirlerininZamanDagilimi = () => {
                 <Ayarlar chart={<Line {...config} />} />
             </div>
             {isLoading ? <Spin size="large" /> : <Line {...config} />}
-            <div id='over'></div>
         </div>
     );
 }

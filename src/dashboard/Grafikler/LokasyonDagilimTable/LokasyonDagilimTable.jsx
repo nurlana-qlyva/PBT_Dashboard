@@ -30,7 +30,6 @@ const LokasyonDagilimTable = () => {
 
     const [data, isLoading] = useFetch(`GetLokasyonBazindaIsEmriTalebi?startDate=${selectedDate.lokasyon_dagilimi_zaman[0]}&endDate=${selectedDate?.lokasyon_dagilimi_zaman[1]}`, [selectedDate?.lokasyon_dagilimi_zaman]);
 
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [pageSize, setPageSize] = useState(15);
 
     const formattedData = useMemo(() => {
@@ -41,19 +40,9 @@ const LokasyonDagilimTable = () => {
         }));
     }, [data]);
 
-    const onSelectChange = (newSelectedRowKeys) => {
-        setSelectedRowKeys(newSelectedRowKeys);
-    };
-
     const handlePageSizeChange = (current, size) => {
         setPageSize(size);
     };
-
-    const rowSelection = {
-        selectedRowKeys,
-        onChange: onSelectChange,
-    };
-
 
     return (
         <div style={{ width: '100%', height: '100%', overflow: "auto"  }}>
@@ -68,18 +57,18 @@ const LokasyonDagilimTable = () => {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı</h3>
                 <Ayarlar chart={<Table
-                    rowSelection={rowSelection}
-                    columns={columns}
                     dataSource={formattedData}
                     pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
+                    columns={columns}
+                    bordered
                 />} />
             </div>
             {isLoading ? <Spin size="large" /> : (
                 <Table
-                    rowSelection={rowSelection}
                     columns={columns}
                     dataSource={formattedData}
                     pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
+                    bordered
                     scroll={{
                         x: 600,
                     }}

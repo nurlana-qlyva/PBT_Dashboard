@@ -53,7 +53,7 @@ const TamamlanmisOranlar = () => {
     }), [formattedData]);
 
     return (
-        <div style={{ width: '100%', height: '100%' }} className='column'>
+        <div style={{ width: '100%', height: '100%' }} className='column' id="tamamlanmis_oranlar">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>Tamamlanmış İş talepleri ve İş Emirleri Oranları</h3>
                 <Ayarlar chart={<Column {...config} />} />

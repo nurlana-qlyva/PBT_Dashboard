@@ -2,7 +2,19 @@ import useFetch from '../../../hooks/useFetch'
 import { Pie } from '@ant-design/charts';
 import { Spin, Select } from 'antd';
 import { Ayarlar } from '../components/Ayarlar';
+const customLabel = (_, datum) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        {datum["İş emri sayısı"] > 10 && (
+            <>
+                <div style={{ width: 50, height: 2, background: 'rgba(0,0,0,0.4)' }} />
+                <div style={{ color: 'black', fontWeight: 500 }}>
+                    {datum["İş emri sayısı"]}
+                </div>
+            </>
+        )}
 
+    </div>
+);
 const IsEmriTip = ({ handleChange }) => {
     const [data, isLoading] = useFetch("GetIsEmriTipEnvanter?ID=2")
 
@@ -18,32 +30,60 @@ const IsEmriTip = ({ handleChange }) => {
         }));
     }
 
+
+
     const config = {
         data: formattedData,
         angleField: "İş emri sayısı",
         colorField: "İş emri tipi",
-        radius: .6,
+        radius: .8,
         label: {
-            text: (d) => `${(d.ISEMRI_SAYISI * 100 / total).toFixed(1)}%`,
+            text: "İş emri sayısı",
             position: 'outside',
         },
+        // label: {
+        //     text: 'İş emri tipi',
+        //     position: 'outside',
+        //     textAlign: 'center',
+        //     transform: [
+        //         {
+        //             type: 'contrastReverse',
+        //         },
+        //     ],
+        //     render: customLabel,
+        // },
+        // legend: false,
+        // paddingRight: 90,
+        innerRadius: 0.5,
         legend: {
             color: {
                 title: false,
                 position: 'top',
-                rowPadding: 5,
+                rowPadding: 1,
             },
         },
-        paddingRight: 80,
+        annotations: [
+            {
+                type: 'text',
+                style: {
+                    text: '',
+                    x: '50%',
+                    y: '50%',
+                    textAlign: 'center',
+                    fontSize: 40,
+                    fontStyle: 'bold',
+                },
+            },
+        ]
     };
 
-    const modalConfig = { ...config, radius: .99 }
+    const modalConfig = { ...config, radius: 1 }
 
 
     return (
         <>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>İş Emri Tipi Grafiği</h3>
+                <h3>İş Emri Tipleri</h3>
                 <div>
                     <Select
                         defaultValue="İş Emri Tipi"

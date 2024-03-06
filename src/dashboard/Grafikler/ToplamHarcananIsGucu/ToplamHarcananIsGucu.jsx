@@ -7,7 +7,7 @@ import { useDate } from '../../../DateContext';
 const ToplamHarcananIsGucu = () => {
     const { selectedDate } = useDate();
     const [data, isLoading] = useFetch(`GetToplamHarcananIsGuc?startDate=${selectedDate?.toplam_harcanan_is_gucu_zaman[0]}&endDate=${selectedDate?.toplam_harcanan_is_gucu_zaman[1]}`, [selectedDate.toplam_harcanan_is_gucu_zaman]);
-    
+
     let formattedData = [];
 
     if (data) {
@@ -23,25 +23,46 @@ const ToplamHarcananIsGucu = () => {
         data: formattedData,
         angleField: 'Dakika',
         colorField: 'TANIM',
-        radius: .6,
+        radius: .8,
         label: {
-            text: (d) => `${(d.Dakika)}`,
+            text: 'Dakika',
             position: 'outside',
             style: {
                 fontSize: 10 // adjust the font size as needed
             },
             line: {},
         },
+        // legend: {
+        //     color: {
+        //       title: false,
+        //       position: 'top',
+        //       rowPadding: 5,
+        //     },
+        //   },
+        innerRadius: 0.5,
         legend: {
             color: {
-              title: false,
-              position: 'top',
-              rowPadding: 5,
+                title: false,
+                position: 'top',
+                rowPadding: 1,
             },
-          },
+        },
+        annotations: [
+            {
+                type: 'text',
+                style: {
+                    text: '',
+                    x: '50%',
+                    y: '50%',
+                    textAlign: 'center',
+                    fontSize: 40,
+                    fontStyle: 'bold',
+                },
+            },
+        ]
     };
 
-    const modalConfig = { ...config, radius: .97 }
+    const modalConfig = { ...config, radius: 1 }
 
     return (
         <div style={{ width: '100%', height: '100%' }}>

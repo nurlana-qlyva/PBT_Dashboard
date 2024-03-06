@@ -20,18 +20,39 @@ const IsTalepDurum = ({ handleChange }) => {
     data: formattedData,
     angleField: 'İş talep sayısı',
     colorField: 'IST_DURUM_ID',
-    radius: .6,
+    radius: .8,
     label: {
-      text: (d) => `${d["İş talep sayısı"]}`,
-      position: 'spider',
+      text: "İş talep sayısı",
+      position: 'outside',
     },
+    // legend: {
+    //   color: {
+    //     title: true,
+    //     position: 'top',
+    //     rowPadding: 5,
+    //   },
+    // },
+    innerRadius: 0.5,
     legend: {
       color: {
-        title: true,
+        title: false,
         position: 'top',
-        rowPadding: 5,
+        rowPadding: 1,
       },
     },
+    annotations: [
+      {
+        type: 'text',
+        style: {
+          text: '',
+          x: '50%',
+          y: '50%',
+          textAlign: 'center',
+          fontSize: 40,
+          fontStyle: 'bold',
+        },
+      },
+    ]
   };
 
   const modalConfig = { ...config, radius: 1 }
@@ -39,7 +60,7 @@ const IsTalepDurum = ({ handleChange }) => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h3>İş Talebi Durumu Grafiği</h3>
+        <h3>İş Talebi Durumları</h3>
         <div>
           <Select
             defaultValue="İş Talebi Durumu"

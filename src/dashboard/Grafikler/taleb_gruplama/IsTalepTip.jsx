@@ -22,27 +22,48 @@ const IsTalepTip = ({ handleChange }) => {
     data: formattedData,
     angleField: 'İş talebi sayısı',
     colorField: 'İş talebi tipi',
-    radius: .6,
+    radius: .8,
     label: {
-      text: (d) => `${(d.TALEP_SAYISI * 100 / total).toFixed(1)}%`,
+      text: "İş talebi sayısı",
       position: 'outside',
       labelHeight: 10,
     },
+    // legend: {
+    //   color: {
+    //     title: true,
+    //     position: 'top',
+    //     rowPadding: 5,
+    //   },
+    // },
+    innerRadius: 0.5,
     legend: {
       color: {
-        title: true,
+        title: false,
         position: 'top',
-        rowPadding: 5,
+        rowPadding: 1,
       },
     },
+    annotations: [
+      {
+        type: 'text',
+        style: {
+          text: '',
+          x: '50%',
+          y: '50%',
+          textAlign: 'center',
+          fontSize: 40,
+          fontStyle: 'bold',
+        },
+      },
+    ]
   };
 
-  const modalConfig = { ...config, radius: .969 }
+  const modalConfig = { ...config, radius: 1 }
 
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h3>İş Talebi Tipi Grafiği</h3>
+        <h3>İş Talebi Tipleri</h3>
         <div>
           <Select
             defaultValue="İş Talebi Tipi"
