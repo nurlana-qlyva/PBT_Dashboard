@@ -14,14 +14,11 @@ export default function Filter({ onUpdateFilters, setComponentLayout, setFiltere
 
 
   const handleReset = () => {
-    const allChecked = checkedList.length === plainOptions.length;
-
-    // Toggle between showing all components and resetting to default options
-    const newCheckedList = allChecked ? [] : plainOptions;
+    const newCheckedList = plainOptions;
     setCheckedList(newCheckedList);
     setFilteredGraphs(newCheckedList);
 
-    const initialLayout = newCheckedList.map((graphKey, index) => ({
+    const initialLayout = plainOptions.map((graphKey, index) => ({
       i: graphKey,
       x: (index % 4) * 3,
       y: Math.floor(index / 3) * 4,
