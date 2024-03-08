@@ -2,6 +2,7 @@ import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
 import { useForm, Controller } from "react-hook-form";
 import { useDate } from '../../../../DateContext';
+import locale from 'antd/es/locale/tr_TR';
 
 const DatePickerComp = () => {
     const { control } = useForm()
@@ -36,6 +37,7 @@ const DatePickerComp = () => {
 const YearDatePicker = () => {
 
     return <ConfigProvider
+        locale={locale}
         button={{
             style: { border: 'none' },
         }}

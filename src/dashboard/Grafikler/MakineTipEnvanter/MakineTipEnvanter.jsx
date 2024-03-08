@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Spin, Table } from 'antd';
-import { Ayarlar } from '../components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
+import { Ayarlar } from './components/Ayarlar';
 
 const columns = [
   {
@@ -22,6 +22,7 @@ const columns = [
     title: 'Yüzde',
     dataIndex: 'MAKINE_SAYISI',
     render: (text) => `${text}%`,
+    align: 'center',
     // width: 100,
     ellipsis: true,
   },
@@ -43,12 +44,13 @@ const MakineTipEnvanter = () => {
           columns={columns}
           dataSource={data}
           bordered
-          pagination={false}
+          pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}
         />} />
       </div>
       {
         isLoading ? <Spin size='large' /> :
           (<Table
+            id='makine_tip_dagilim'
             columns={columns}
             dataSource={data}
             bordered

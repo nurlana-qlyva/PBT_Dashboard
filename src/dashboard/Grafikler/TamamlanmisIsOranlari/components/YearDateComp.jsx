@@ -2,13 +2,20 @@ import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
 import { useFormContext, Controller } from "react-hook-form";
 import { useDate } from '../../../../DateContext';
+import styled from "styled-components";
+import locale from 'antd/es/locale/tr_TR';
+
+const StyledButton = styled(Button)`
+        border: none !important;
+        box-shadow: none !important;
+`;
 
 const DatePickerComp = () => {
     const { control } = useFormContext()
     const { selectedDate, setSelectedDate } = useDate()
 
     const onChange = (date, dateString) => {
-        setSelectedDate({...selectedDate, tamamlanmis_oranlar_zaman: dateString})
+        setSelectedDate({ ...selectedDate, tamamlanmis_oranlar_zaman: dateString })
     };
 
     return (
@@ -33,6 +40,7 @@ const DatePickerComp = () => {
 const YearDatePicker = () => {
 
     return <ConfigProvider
+        locale={locale}
         button={{
             style: { border: 'none' },
         }}
@@ -40,7 +48,7 @@ const YearDatePicker = () => {
         <div className="demo">
             <div>
                 <Popover placement="rightTop" content={<DatePickerComp />}>
-                    <Button>Yıla göre seç</Button>
+                    <StyledButton>Yıla göre seç</StyledButton>
                 </Popover>
             </div>
         </div>

@@ -2,7 +2,7 @@ import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
 import { useForm, Controller } from "react-hook-form";
 import { useDate } from '../../../../DateContext';
-
+import locale from 'antd/es/locale/tr_TR';
 
 const DatePickerComp = () => {
     const { control } = useForm()
@@ -55,19 +55,22 @@ const DatePickerComp = () => {
 }
 
 const MonthDatePicker = () => {
-    return <ConfigProvider
-        button={{
-            style: { border: 'none' },
-        }}
-    >
-        <div className="demo">
-            <div>
-                <Popover placement="rightTop" content={<DatePickerComp />}>
-                    <Button>Aya göre seç</Button>
-                </Popover>
+    return (
+        <ConfigProvider
+            locale={locale}
+            button={{
+                style: { border: 'none' },
+            }}
+        >
+            <div className="demo">
+                <div>
+                    <Popover placement="rightTop" content={<DatePickerComp />}>
+                        <Button>Aya göre seç</Button>
+                    </Popover>
+                </div>
             </div>
-        </div>
-    </ConfigProvider>
+        </ConfigProvider>
+    )
 }
 
 export default MonthDatePicker;

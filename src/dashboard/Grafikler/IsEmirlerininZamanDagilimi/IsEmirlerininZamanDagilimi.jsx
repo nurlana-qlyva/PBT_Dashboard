@@ -44,9 +44,9 @@ const IsEmirlerininZamanDagilimi = () => {
     };
 
     return (
-        <div style={{ width: '100%', height: '100%', position: 'relative' }} className='column'>
+        <div style={{ width: '100%', height: '100%', position: 'relative' }} className='column' id='isemirlerinin_zaman_dagilimi'>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>İş Emirlerinin Zaman İçerisinde Dağılımı</h3>
+                <h3>İş Emirlerinin Zaman İçerisinde Dağılımı <br /> ({selectedDate?.is_emirlerinin_zaman_dagilimi[0]} / {selectedDate?.is_emirlerinin_zaman_dagilimi[1]})</h3>
                 <Ayarlar chart={<Line {...config} />} />
             </div>
             {isLoading ? <Spin size="large" /> : <Line {...config} />}

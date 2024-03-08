@@ -87,7 +87,7 @@ const IsTalepTip = ({ handleChange }) => {
               }
             ]}
           />
-          <Ayarlar chart={<Pie {...modalConfig} />} />
+          <Ayarlar chart={<Pie {...modalConfig} />} title={'İş Talebi Tipleri'}/>
         </div>
       </div>
       {isLoading ? <Spin size="large" /> : <Pie {...config} />}

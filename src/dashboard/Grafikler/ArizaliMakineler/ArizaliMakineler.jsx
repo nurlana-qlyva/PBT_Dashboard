@@ -1,7 +1,7 @@
 import { Table, Spin } from 'antd';
 import { useState } from 'react';
-import { Ayarlar } from '../components/Ayarlar';
 import useFetch from '../../../hooks/useFetch';
+import { Ayarlar } from './components/Ayarlar';
 
 const columns = [
     {
@@ -56,6 +56,7 @@ const ArizaliMakinelerTablo = () => {
                 />} />
             </div>
             {isLoading ? <Spin size="large" /> : <Table
+            id='arizali_makineler'
                 columns={columns}
                 dataSource={data}
                 pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}

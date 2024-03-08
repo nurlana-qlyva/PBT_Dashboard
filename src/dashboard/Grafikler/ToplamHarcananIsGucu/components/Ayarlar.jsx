@@ -28,7 +28,7 @@ export const Ayarlar = ({ chart }) => {
 
     const content = (
         <Space direction="vertical">
-            <ChartModal chart={chart} />
+            <ChartModal chart={chart} title={'Toplam Harcanan İş Gücü'}/>
             <Popover placement="leftTop" content={contentDate} style={{ border: 0 }}>
                 <StyledButton>Zamana göre seç</StyledButton>
             </Popover>

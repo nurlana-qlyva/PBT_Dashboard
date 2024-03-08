@@ -2,6 +2,7 @@ import { DatePicker } from 'antd';
 import { Button, Popover, ConfigProvider } from 'antd';
 import { useForm, Controller } from "react-hook-form";
 import { useDate } from '../../../../DateContext';
+import locale from 'antd/es/locale/tr_TR';
 
 const { RangePicker } = DatePicker
 
@@ -38,6 +39,7 @@ const DatePickerComp = () => {
 
 const DayDatePicker = () => {
     return <ConfigProvider
+        locale={locale}
         button={{
             style: { border: 'none' },
         }}
@@ -45,7 +47,7 @@ const DayDatePicker = () => {
         <div className="demo">
             <div>
                 <Popover placement="rightTop" content={<DatePickerComp />}>
-                    <Button>Güne göre seç</Button>
+                    <Button>Tarih aralığı seç</Button>
                 </Popover>
             </div>
         </div>

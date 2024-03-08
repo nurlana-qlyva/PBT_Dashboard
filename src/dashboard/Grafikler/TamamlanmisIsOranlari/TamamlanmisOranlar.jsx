@@ -55,7 +55,7 @@ const TamamlanmisOranlar = () => {
     return (
         <div style={{ width: '100%', height: '100%' }} className='column' id="tamamlanmis_oranlar">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>Tamamlanmış İş talepleri ve İş Emirleri Oranları</h3>
+                <h3>Tamamlanmış İş talepleri ve İş Emirleri Oranları ({selectedDate.tamamlanmis_oranlar_zaman})</h3>
                 <Ayarlar chart={<Column {...config} />} />
             </div>
             {isLoading ? <Spin size="large" /> : <Column {...config} />}

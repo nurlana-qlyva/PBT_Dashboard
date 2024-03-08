@@ -54,8 +54,8 @@ const LokasyonDagilimTable = () => {
           }
         `}
             </style>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı</h3>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} id='lokasyon_dagilimi'>
+                <h3>Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı <br /> ({selectedDate.lokasyon_dagilimi_zaman[0]} / {selectedDate.lokasyon_dagilimi_zaman[1]})</h3>
                 <Ayarlar chart={<Table
                     dataSource={formattedData}
                     pagination={{ pageSize: pageSize, onChange: handlePageSizeChange }}

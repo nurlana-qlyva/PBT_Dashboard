@@ -7,7 +7,7 @@ const StyledButton = styled(Button)`
         box-shadow: none !important;
 `;
 
-export const ChartModal = ({chart}) => {
+export const ChartModal = ({ chart, title }) => {
     const [open, setOpen] = useState(false)
 
     return (
@@ -16,7 +16,7 @@ export const ChartModal = ({chart}) => {
                 Büyüt
             </StyledButton>
             <Modal
-                title="İş Emirleri/ İş Talepleri Grafiği"
+                title={title}
                 centered
                 open={open}
                 onOk={() => setOpen(false)}

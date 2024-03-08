@@ -40,7 +40,7 @@ const DayDatePicker = () => {
         <div className="demo">
             <div>
                 <Popover placement="rightTop" content={<DatePickerComp />}>
-                    <Button>Güne göre seç</Button>
+                    <Button>Tarih aralığı seç</Button>
                 </Popover>
             </div>
         </div>

@@ -39,9 +39,9 @@ const AylikBakimMaliyeti = () => {
   };
 
   return (
-    <div style={{ width: '100%', height: '100%' }} className='column'>
+    <div style={{ width: '100%', height: '100%' }} className='column' id="aylik_bakim_maliyeti">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h3>Aylık Bakım Maliyetleri</h3>
+        <h3>Aylık Bakım Maliyetleri ({selectedDate.aylik_bakim_maliyeti})</h3>
         <Ayarlar chart={<Column {...config} />} />
       </div>
       {isLoading ? <Spin size="large" /> : <Column {...config} />}

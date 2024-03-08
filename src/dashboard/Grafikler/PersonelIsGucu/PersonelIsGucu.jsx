@@ -51,9 +51,9 @@ const PersonelIsGucu = () => {
     };
 
     return (
-        <div style={{ width: '100%', height: '100%' }} className='column'>
+        <div style={{ width: '100%', height: '100%' }} className='column' id="personel_is_gucu">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>Personel Bazında Harcanan İş Gücü</h3>
+                <h3>Personel Bazında Harcanan İş Gücü <br /> ({selectedDate?.personel_is_gucu_zaman[0]} / {selectedDate?.personel_is_gucu_zaman[1]})</h3>
                 <Ayarlar chart={<Column {...config} />} />
             </div>
             {isLoading ? <Spin size="large" /> : <Column {...config} />}

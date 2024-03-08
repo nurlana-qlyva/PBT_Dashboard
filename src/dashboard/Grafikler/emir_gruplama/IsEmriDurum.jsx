@@ -87,7 +87,7 @@ const IsEmriDurum = ({ handleChange }) => {
                             }
                         ]}
                     />
-                    <Ayarlar chart={<Pie {...modalConfig} />} />
+                    <Ayarlar chart={<Pie {...modalConfig} />} title={'İş Emri Durumları'}/>
                 </div>
             </div>
             {isLoading ? <Spin size="large" /> : <Pie {...config} />}

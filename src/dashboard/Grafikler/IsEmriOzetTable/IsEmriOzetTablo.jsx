@@ -67,9 +67,9 @@ const IsEmriOzetTablo = () => {
     }
 
     return (
-        <div style={{ width: '100%', height: '100%',overflow: "auto"  }}>
+        <div style={{ width: '100%', height: '100%',overflow: "auto"  }} id='isemri_ozet_tablo'>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h3>İş Emirleri Özet Tablosu</h3>
+                <h3>İş Emirleri Özet Tablosu <br /> ({selectedDate?.is_emri_ozet_zaman[0]} / {selectedDate?.is_emri_ozet_zaman[1]})</h3>
                 <Ayarlar chart={<Table
                     columns={columns}
                     dataSource={formattedData}

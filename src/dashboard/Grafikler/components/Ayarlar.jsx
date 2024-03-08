@@ -9,7 +9,7 @@ const StyledButton = styled(Button)`
         box-shadow: none !important;
 `;
 
-export const Ayarlar = ({ chart }) => {
+export const Ayarlar = ({ chart, title }) => {
     const [open, setOpen] = useState(false)
     const handleOpenChange = (newOpen) => {
         setOpen(newOpen);
@@ -17,7 +17,7 @@ export const Ayarlar = ({ chart }) => {
 
     const content = (
         <Space direction="vertical">
-            <ChartModal chart={chart} />
+            <ChartModal chart={chart} title={title}/>
         </Space>
     )
 
