@@ -183,7 +183,7 @@ const Dashboard = () => {
       }));
       setComponentLayout(initialLayout);
     }
-  }, [memoizedFilteredGraphs]); // Add filteredGraphs to the dependency array
+  }, [filteredGraphs]); // Add filteredGraphs to the dependency array
 
 
   const updateFilters = (selectedGraphs) => {

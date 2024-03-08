@@ -22,7 +22,7 @@ const IsEmriDurum = ({ handleChange }) => {
         data: formattedData,
         angleField: 'İş emri sayısı',
         colorField: 'İş emri durumu',
-        radius: .8,
+        radius: .6,
         label: {
             text: 'İş emri sayısı',
             position: 'outside',
@@ -35,7 +35,7 @@ const IsEmriDurum = ({ handleChange }) => {
         //     },
         // },
         // paddingRight: 80,
-        innerRadius: 0.5,
+        innerRadius: 0.2,
         legend: {
             color: {
                 title: false,

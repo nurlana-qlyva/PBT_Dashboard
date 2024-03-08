@@ -20,7 +20,7 @@ const IsTalepDurum = ({ handleChange }) => {
     data: formattedData,
     angleField: 'İş talep sayısı',
     colorField: 'IST_DURUM_ID',
-    radius: .8,
+    radius: .6,
     label: {
       text: "İş talep sayısı",
       position: 'outside',
@@ -32,7 +32,7 @@ const IsTalepDurum = ({ handleChange }) => {
     //     rowPadding: 5,
     //   },
     // },
-    innerRadius: 0.5,
+    innerRadius: 0.2,
     legend: {
       color: {
         title: false,

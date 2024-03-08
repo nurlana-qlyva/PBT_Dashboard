@@ -23,7 +23,7 @@ const ToplamHarcananIsGucu = () => {
         data: formattedData,
         angleField: 'Dakika',
         colorField: 'TANIM',
-        radius: .8,
+        radius: .6,
         label: {
             text: 'Dakika',
             position: 'outside',
@@ -39,7 +39,7 @@ const ToplamHarcananIsGucu = () => {
         //       rowPadding: 5,
         //     },
         //   },
-        innerRadius: 0.5,
+        innerRadius: 0.2,
         legend: {
             color: {
                 title: false,
@@ -65,7 +65,7 @@ const ToplamHarcananIsGucu = () => {
     const modalConfig = { ...config, radius: 1 }
 
     return (
-        <div style={{ width: '100%', height: '100%' }}>
+        <div style={{ width: '100%', height: '100%' }} className='chart-container'>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <h3>Toplam Harcanan İş Gücü</h3>
                 <Ayarlar chart={<Pie {...modalConfig} />} />

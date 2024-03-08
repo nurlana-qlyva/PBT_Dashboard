@@ -22,7 +22,7 @@ const IsTalepTip = ({ handleChange }) => {
     data: formattedData,
     angleField: 'İş talebi sayısı',
     colorField: 'İş talebi tipi',
-    radius: .8,
+    radius: .6,
     label: {
       text: "İş talebi sayısı",
       position: 'outside',
@@ -35,7 +35,7 @@ const IsTalepTip = ({ handleChange }) => {
     //     rowPadding: 5,
     //   },
     // },
-    innerRadius: 0.5,
+    innerRadius: 0.2,
     legend: {
       color: {
         title: false,

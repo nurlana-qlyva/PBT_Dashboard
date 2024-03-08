@@ -12,7 +12,7 @@ const GrupIsTaleb = () => {
     };
 
     return (
-        <div style={{ height: '100%', width: '100%' }}>
+        <div style={{ height: '100%', width: '100%' }} className='chart-container'>
             {graph === 1 && <IsTalepTip handleChange={handleChange}/>}
             {graph === 2 && <IsTalepDurum handleChange={handleChange}/>}
             {graph === 3 && <Lokasyon handleChange={handleChange} />}
