@@ -23,7 +23,7 @@ export default function Filter({ onUpdateFilters, setComponentLayout, setFiltere
       x: (index % 4) * 3,
       y: Math.floor(index / 3) * 4,
       w: 3,
-      h: 4,
+      h: 3,
     }));
     setComponentLayout(initialLayout);
     localStorage.setItem("componentLayout", JSON.stringify(initialLayout));
