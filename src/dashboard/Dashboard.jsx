@@ -26,7 +26,7 @@ const components = [
     key: 'İş Emri Tipi Grafiği',
     component: <GrupIsEmir />,
     location: {
-      w: 4, h: 4, x: (0 % 3) * 4, y: Math.floor(0 / 3) * 4
+      // w: 4, h: 4, x: (0 % 3) * 4, y: Math.floor(0 / 3) * 4
     }
   },
   {
@@ -34,7 +34,7 @@ const components = [
     key: 'İş Talebi Tipi Grafiği',
     component: <GrupIsTaleb />,
     location: {
-      w: 4, h: 4, x: (1 % 3) * 4, y: Math.floor(1 / 3) * 4
+      // w: 4, h: 4, x: (1 % 3) * 4, y: Math.floor(1 / 3) * 4
     }
   },
   {
@@ -42,7 +42,7 @@ const components = [
     key: 'Tamamlanmış İş talepleri ve İş Emirleri Oranları',
     component: <TamamlanmisOranlar />,
     location: {
-      w: 4, h: 4, x: (2 % 3) * 4, y: Math.floor(2 / 3) * 4
+      // w: 4, h: 4, x: (2 % 3) * 4, y: Math.floor(2 / 3) * 4
     }
   },
   {
@@ -50,7 +50,7 @@ const components = [
     key: 'Aylık Bakım Maliyetleri',
     component: <AylikBakimMaliyeti />,
     location: {
-      w: 4, h: 4, x: (3 % 3) * 4, y: Math.floor(3 / 3) * 4
+      // w: 4, h: 4, x: (3 % 3) * 4, y: Math.floor(3 / 3) * 4
     }
   },
   {
@@ -58,7 +58,7 @@ const components = [
     key: 'Personel Bazında Harcanan İş Gücü',
     component: <PersonelIsGucu />,
     location: {
-      w: 4, h: 4, x: (4 % 3) * 4, y: Math.floor(4 / 3) * 4
+      // w: 4, h: 4, x: (4 % 3) * 4, y: Math.floor(4 / 3) * 4
     }
   },
   {
@@ -66,7 +66,7 @@ const components = [
     key: 'Toplam Harcanan İş Gücü',
     component: <ToplamHarcananIsGucu />,
     location: {
-      w: 4, h: 4, x: (5 % 3) * 4, y: Math.floor(5 / 3) * 4
+      // w: 4, h: 4, x: (5 % 3) * 4, y: Math.floor(5 / 3) * 4
     }
   },
   {
@@ -74,7 +74,7 @@ const components = [
     key: 'Bakım İşlemlerinin Zaman İçerisinde Dağılımı',
     component: <IsEmirlerininZamanDagilimi />,
     location: {
-      w: 4, h: 4, x: (6 % 3) * 4, y: Math.floor(6 / 3) * 4
+      // w: 4, h: 4, x: (6 % 3) * 4, y: Math.floor(6 / 3) * 4
     }
   },
   {
@@ -82,7 +82,7 @@ const components = [
     key: 'Lokasyon Bazında İş talepleri / İş Emirleri Dağılımı',
     component: <LokasyonDagilimTable />,
     location: {
-      w: 4, h: 4, x: (7 % 3) * 4, y: Math.floor(7 / 3) * 4
+      // w: 4, h: 4, x: (7 % 3) * 4, y: Math.floor(7 / 3) * 4
     }
   },
   {
@@ -90,7 +90,7 @@ const components = [
     key: 'Makine Tiplerine Göre Envanter Dağılımı',
     component: <MakineTipEnvanter />,
     location: {
-      w: 4, h: 4, x: (8 % 3) * 4, y: Math.floor(8 / 3) * 4
+      // w: 4, h: 4, x: (8 % 3) * 4, y: Math.floor(8 / 3) * 4
     }
   },
   {
@@ -98,7 +98,7 @@ const components = [
     key: 'İş Emirleri Özet Tablosu',
     component: <IsEmriOzetTablo />,
     location: {
-      w: 4, h: 4, x: (9 % 3) * 4, y: Math.floor(9 / 3) * 4
+      // w: 4, h: 4, x: (9 % 3) * 4, y: Math.floor(9 / 3) * 4
     }
   },
   {
@@ -106,7 +106,7 @@ const components = [
     key: 'Arızalı Makineler',
     component: <ArizaliMakinelerTablo />,
     location: {
-      w: 4, h: 4, x: (10 % 3) * 4, y: Math.floor(10 / 3) * 4
+      // w: 4, h: 4, x: (10 % 3) * 4, y: Math.floor(10 / 3) * 4
     }
   }
 ];
@@ -162,9 +162,9 @@ const Dashboard = () => {
         } else {
           return {
             i: graphKey,
-            x: (index % 3) * 4,
+            x: (index % 4) * 3,
             y: Math.floor(index / 3) * 4,
-            w: 4,
+            w: 3,
             h: 4,
           };
         }
@@ -176,9 +176,9 @@ const Dashboard = () => {
       // If layout data is not found in local storage, generate initial layout
       const initialLayout = memoizedFilteredGraphs.map((graphKey, index) => ({
         i: graphKey,
-        x: (index % 3) * 4,
+        x: (index % 4) * 3,
         y: Math.floor(index / 3) * 4,
-        w: 4,
+        w: 3,
         h: 4,
       }));
       setComponentLayout(initialLayout);
@@ -187,33 +187,33 @@ const Dashboard = () => {
 
 
   const updateFilters = (selectedGraphs) => {
-      setFilteredGraphs(selectedGraphs);
-      // Save filtered graphs to local storage
-      localStorage.setItem('filteredGraphs', JSON.stringify(selectedGraphs));
+    setFilteredGraphs(selectedGraphs);
+    // Save filtered graphs to local storage
+    localStorage.setItem('filteredGraphs', JSON.stringify(selectedGraphs));
 
-      const savedGraphs = JSON.parse(localStorage.getItem('filteredGraphs'));
+    const savedGraphs = JSON.parse(localStorage.getItem('filteredGraphs'));
 
-      const newLayout = savedGraphs.map((graphKey, index) => {
-        const itemLayout = componentLayout.find(item => item.i === graphKey);
-        if (itemLayout) {
-          return {
-            ...itemLayout,
-          };
-        } else {
-          return {
-            i: graphKey,
-            x: (index % 3) * 4,
-            y: Math.floor(index / 3) * 4,
-            w: 4,
-            h: 4,
-          };
-        }
-      });
-      localStorage.setItem('componentLayout', JSON.stringify(newLayout));
-      setComponentLayout(newLayout)
+    const newLayout = savedGraphs.map((graphKey, index) => {
+      const itemLayout = componentLayout.find(item => item.i === graphKey);
+      if (itemLayout) {
+        return {
+          ...itemLayout,
+        };
+      } else {
+        return {
+          i: graphKey,
+          x: (index % 4) * 3,
+          y: Math.floor(index / 3) * 4,
+          w: 3,
+          h: 4,
+        };
+      }
+    });
+    localStorage.setItem('componentLayout', JSON.stringify(newLayout));
+    setComponentLayout(newLayout)
 
   };
-  
+
   const handleLayoutChange = (layout) => {
     // Save layout to local storage whenever it changes
     localStorage.setItem('componentLayout', JSON.stringify(layout));
@@ -238,7 +238,7 @@ const Dashboard = () => {
     <>
       <div id="chart-container" style={{ padding: mobileView ? "24px 0px" : 24 }}>
         <DashboardStatisticCards />
-        <Filter onUpdateFilters={updateFilters} memoizedFilteredGraphs={filteredGraphs} setComponentLayout={setComponentLayout} />
+        <Filter onUpdateFilters={updateFilters} setFilteredGraphs={setFilteredGraphs} setComponentLayout={setComponentLayout} />
         <ResponsiveGridLayout
           className="layout"
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480 }}
